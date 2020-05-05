@@ -1,9 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+wassy:
+  name: "鷲尾須美"
+  hero_type: "遠射"
 
-one:
-  name: MyString
-  type: 
-
-two:
-  name: MyString
-  type: 
