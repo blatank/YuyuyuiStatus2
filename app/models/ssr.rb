@@ -1,3 +1,5 @@
+require 'csv'
+
 class Ssr < ApplicationRecord
   belongs_to :hero
   
@@ -73,4 +75,53 @@ class Ssr < ApplicationRecord
   validates :sp_atk,        presence: true,
                         numericality: { only_integer: true,
                             greater_than_or_equal_to: 0 }
+
+  # CSVからのインポート
+  def self.csv_import(dir_path = 'db/csv/*.csv')
+    Dir.glob(dir_path) do |f|
+      puts f
+      datas = CSV.open(f)
+      
+      # 勇者名を取得。および先頭行を省く
+      topRow   = datas.shift
+      hero_name = topRow[0]
+      
+      hero = Hero.find_by(name: hero_name)
+      if hero
+        datas.each do |line|
+          p
+          color    = COLOR_NUM[line[0]]
+          rare     = line[1]
+          name     = line[2]
+          hp       = line[3].to_i
+          atk      = line[4].to_i
+          stamina  = STATUS_NUM[line[5]]
+          speed    = STATUS_NUM[line[6]]
+          crt      = STATUS_NUM[line[7]]
+          cost     = line[8].to_i
+          sp       = line[9].to_i
+          hero_id  = hero.id
+          
+          
+          # 必殺技倍率は10倍して入れる
+          sp_ratio = (line[10].to_f * 10).to_i
+          sp_atk   = atk * sp_ratio
+          Ssr.create!(color: color,
+                       rare: rare,
+                       name: name,
+                         hp: hp,
+                        atk: atk,
+                    stamina: stamina,
+                      speed: speed,
+                        crt: crt,
+                       cost: cost,
+                         sp: sp,
+                   sp_ratio: sp_ratio,
+                     sp_atk: sp_atk,
+                    hero_id: hero_id)
+        end
+      end
+    end
+  end
+
 end
