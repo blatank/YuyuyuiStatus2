@@ -32,4 +32,45 @@ class Ssr < ApplicationRecord
                         greater_than_or_equal_to: STATUS_NUM["F-"],
                            less_than_or_equal_to: STATUS_NUM["S+"] }
   
+  # 速度
+  validates :speed,     presence: true,
+                    numericality: { only_integer: true,
+                        greater_than_or_equal_to: STATUS_NUM["F-"],
+                           less_than_or_equal_to: STATUS_NUM["S+"] }
+  # CRT
+  validates :crt,       presence: true,
+                    numericality: { only_integer: true,
+                        greater_than_or_equal_to: STATUS_NUM["F-"],
+                           less_than_or_equal_to: STATUS_NUM["S+"] }
+  # HP
+  validates :hp,          presence: true,
+                      numericality: { only_integer: true,
+                                      greater_than: 0 }
+  # ATK
+  validates :atk,         presence: true,
+                      numericality: { only_integer: true,
+                                      greater_than: 0 }
+
+  # COST
+  validates :cost,        presence: true,
+                      numericality: { only_integer: true,
+                                      greater_than: 0,
+                                         less_than: 100 }
+  # SP
+  validates :sp,          presence: true,
+                      numericality: { only_integer: true,
+                                      greater_than: 0,
+                                         less_than: 100 }
+                                         
+  # 必殺技倍率
+  SP_RATIO_LSB = 0.1
+  validates :sp_ratio,    presence: true,
+                      numericality: { only_integer: true,
+                          greater_than_or_equal_to: 0,
+                             less_than_or_equal_to: (500 / SP_RATIO_LSB).to_i }
+                             
+  # 必殺技ATK
+  validates :sp_atk,        presence: true,
+                        numericality: { only_integer: true,
+                            greater_than_or_equal_to: 0 }
 end
