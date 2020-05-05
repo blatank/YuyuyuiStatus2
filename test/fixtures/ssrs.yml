@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ssrtest:
+  name: "共に在る日々"
+  color: 3
+  rare: "SSR"
+  hp: 2030
+  atk: 2180
+  stamina: 7
+  speed: 7
+  crt: 8
+  cost: 32
+  sp: 28
+  sp_ratio: 150 # LSB[0.1]
+  sp_atk: 32700
+  hero: 1 # 適当
+
