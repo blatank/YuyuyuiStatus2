@@ -8,7 +8,8 @@ class Ssr < ApplicationRecord
                      length: { maximum: 20 }
   
   # 属性
-  COLOR_NUM = { "red" => 0, "blue" => 1, "green" => 2, "yellow" => 3, "purple" => 4}
+  COLOR_NUM     = { "red" => 0, "blue" => 1, "green" => 2, "yellow" => 3, "purple" => 4}
+  COLOR_NUM_INV = COLOR_NUM.invert
   validates :color,     presence: true,
                     numericality: { only_integer: true,
                         greater_than_or_equal_to: COLOR_NUM["red"],
@@ -27,6 +28,7 @@ class Ssr < ApplicationRecord
                  "B-" => 12, "B"  => 13, "B+" => 14,
                  "A-" => 15, "A"  => 16, "A+" => 17,
                  "S-" => 18, "S"  => 19, "S+" => 20  }
+  STATUS_NUM_INV = STATUS_NUM.invert
   
   # 踏ん張り
   validates :stamina,   presence: true,
@@ -75,6 +77,16 @@ class Ssr < ApplicationRecord
   validates :sp_atk,        presence: true,
                         numericality: { only_integer: true,
                             greater_than_or_equal_to: 0 }
+
+  # 属性を文字列で出力
+  def color_str
+    COLOR_NUM_INV[color]
+  end
+  
+  # ステータスを文字列で出力
+  def status_str(value)
+    STATUS_NUM_INV[value]
+  end
 
   # CSVからのインポート
   def self.csv_import(dir_path = 'db/csv/*.csv')

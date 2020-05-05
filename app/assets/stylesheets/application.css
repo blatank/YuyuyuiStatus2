@@ -13,3 +13,114 @@
  *= require_tree .
  *= require_self
  */
+ 
+ /* 仮 */
+ /* style.css */
+body {
+  font-family: 'Meiryo',-apple-system,'BlinkMacSystemFont',
+               '.SFNSDisplay-Regular','Hiragino Kaku Gothic Pro',
+               'Yu Gothic','MS PGothic','Segoe UI','Verdana',
+               'Helvetica','Arial',sans-serif;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0px;
+}
+
+/* common */
+a:link, a:visited {
+  color: #0000ff;
+}
+
+table {
+  border-collapse: collapse;
+  /*後で直す margin-left: 50px; */
+  margin: 0 auto 0;
+}
+
+th {
+  background-color: whitesmoke;
+}
+
+td, th {
+  border: 1px solid lightgray;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+td.heroname {
+  white-space: normal;
+}
+
+strong.strongest {
+  color: red;
+}
+
+strong.weakest {
+  color: blue;
+}
+
+/* 属性の色(空白スペースの背景色として使用 */
+.attr_red {
+  background-color: red;
+}
+.attr_blue {
+  background-color: blue;
+}
+.attr_green {
+  background-color: green;
+}
+.attr_yellow {
+  background-color: yellow;
+}
+.attr_purple {
+  background-color: purple;
+}
+.hero_color a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.UR {
+  background-color: gold;
+}
+
+.SSR {
+
+}
+
+.SR {
+  background-color: tan;
+}
+
+.R {
+  background-color: skyblue;
+}
+
+ul {
+  display: inline-block;
+}
+
+ul li {
+  text-align: left;
+}
+
+
+
+/* midium screen */
+@media (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+  td, th {
+    padding: 10px;
+  }
+}
+/* large screen */
+@media (min-width: 800px) {
+
+}
+
