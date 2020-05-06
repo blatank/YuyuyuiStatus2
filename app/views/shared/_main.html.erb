@@ -34,16 +34,16 @@
     </thead>
     <tbody>
       <% @ssrs.each do |ssr| %>
-        <% hp_class       = puts_maxmin_class(@max[:hp], @min[:hp], ssr.hp) %>
-        <% atk_class      = puts_maxmin_class(@max[:atk], @min[:atk], ssr.atk) %>
-        <% stamina_class  = puts_maxmin_class(@max[:stamina], @min[:stamina], ssr.stamina) %>
-        <% speed_class    = puts_maxmin_class(@max[:speed], @min[:speed], ssr.speed) %>
-        <% crt_class      = puts_maxmin_class(@max[:crt], @min[:crt], ssr.crt) %>
+        <% hp_class       = ssr.puts_maxmin_class(@max[:hp], @min[:hp], "hp") %>
+        <% atk_class      = ssr.puts_maxmin_class(@max[:atk], @min[:atk], "atk") %>
+        <% stamina_class  = ssr.puts_maxmin_class(@max[:stamina], @min[:stamina], "stamina") %>
+        <% speed_class    = ssr.puts_maxmin_class(@max[:speed], @min[:speed], "speed") %>
+        <% crt_class      = ssr.puts_maxmin_class(@max[:crt], @min[:crt], "crt") %>
         <%# costだけ最大最小逆にする %>
-        <% cost_class     = puts_maxmin_class(@min[:cost], @max[:cost], ssr.cost) %>
-        <% sp_class       = puts_maxmin_class(@max[:sp], @min[:sp], ssr.sp) %>
-        <% sp_ratio_class = puts_maxmin_class(@max[:sp_ratio], @min[:sp_ratio], ssr.sp_ratio) %>
-        <% sp_atk_class   = puts_maxmin_class(@max[:sp_atk], @min[:sp_atk], ssr.sp_atk) %>
+        <% cost_class     = ssr.puts_maxmin_class(@min[:cost], @max[:cost], "cost") %>
+        <% sp_class       = ssr.puts_maxmin_class(@max[:sp], @min[:sp], "sp") %>
+        <% sp_ratio_class = ssr.puts_maxmin_class(@max[:sp_ratio], @min[:sp_ratio], "sp_ratio") %>
+        <% sp_atk_class   = ssr.puts_maxmin_class(@max[:sp_atk], @min[:sp_atk], "sp_atk") %>
 
         <tr class="<%= ssr.rare %>">
           <td class="attr_<%= ssr.color_str %> ssr_color">　</td>

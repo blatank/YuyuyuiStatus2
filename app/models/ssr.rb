@@ -88,6 +88,21 @@ class Ssr < ApplicationRecord
   def status_str(value)
     STATUS_NUM_INV[value]
   end
+  
+  # クラス判定(CSS用)
+  def puts_maxmin_class(max=0, min=0, mes)
+    myself = self.send(mes)
+    
+    if min == max or self.rare != "SSR"
+      ""
+    elsif myself == max
+      "strongest"
+    elsif myself == min
+      "weakest"
+    else
+      ""
+    end
+  end
 
   # CSVからのインポート
   def self.csv_import(dir_path = 'db/csv/*.csv')
