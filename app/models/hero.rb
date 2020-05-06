@@ -1,6 +1,7 @@
 require 'csv'
 
 class Hero < ApplicationRecord
+  has_many :ssrs
   # name validation
   validates :name, presence: true,
                      length: { maximum: 10 }

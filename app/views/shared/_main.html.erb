@@ -1,0 +1,130 @@
+<header>
+  <h1><%= yield(:title) %></h1>
+</header>
+<main>
+  <section id="explain">
+    <h2>注意</h2>
+    <ul>
+      <li><span class="UR">　</span>色の行はURの勇者です(参考値)。</li>
+      <li><span class="SR">　</span>色の行はSRの勇者です(参考値。データは弥勒蓮華しか入れてません)。</li>
+      <li><span class="R">　</span>色の行はRの勇者です(参考値。データは弥勒蓮華しか入れてません)。</li>
+      <li>必殺技倍率は連撃の場合はすべての倍率を足した値になっています。</li>
+      <li>必殺技倍率に属性特効は加味していません。</li>
+      <li>敵の最大HPの○割というものがある必殺技は1倍で計算しています。</li>
+    </ul>
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th>属性</th>
+        <th>勇者名</th>
+        <th>タイプ</th>
+        <th>名称</th>
+        <th>HP</th>
+        <th>ATK</th>
+        <th>踏張</th>
+        <th>速度</th>
+        <th>CRT</th>
+        <th>コスト</th>	
+        <th>SP</th>
+        <th>必殺技<br>倍率</th>
+        <th>必殺技<br>ATK</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ssrs.each do |ssr| %>
+        <% hp_class       = puts_maxmin_class(@max[:hp], @min[:hp], ssr.hp) %>
+        <% atk_class      = puts_maxmin_class(@max[:atk], @min[:atk], ssr.atk) %>
+        <% stamina_class  = puts_maxmin_class(@max[:stamina], @min[:stamina], ssr.stamina) %>
+        <% speed_class    = puts_maxmin_class(@max[:speed], @min[:speed], ssr.speed) %>
+        <% crt_class      = puts_maxmin_class(@max[:crt], @min[:crt], ssr.crt) %>
+        <%# costだけ最大最小逆にする %>
+        <% cost_class     = puts_maxmin_class(@min[:cost], @max[:cost], ssr.cost) %>
+        <% sp_class       = puts_maxmin_class(@max[:sp], @min[:sp], ssr.sp) %>
+        <% sp_ratio_class = puts_maxmin_class(@max[:sp_ratio], @min[:sp_ratio], ssr.sp_ratio) %>
+        <% sp_atk_class   = puts_maxmin_class(@max[:sp_atk], @min[:sp_atk], ssr.sp_atk) %>
+
+        <tr class="<%= ssr.rare %>">
+          <td class="attr_<%= ssr.color_str %> ssr_color">　</td>
+          <td class="ssr"><%= link_to ssr.hero.name, hero_path(ssr.hero) %></td>
+          <td class="ssrtype"><%= ssr.hero.hero_type %></td>
+          <td class="ssrname"><%= ssr.name %></td>
+
+          <td>
+          <% if hp_class == "" %>
+            <%= ssr.hp %>
+          <% else %>
+            <strong class="<%= hp_class %>"><%= ssr.hp %></strong>
+          <% end %>
+          </td>
+            
+          <td>
+          <% if atk_class == "" %>
+            <%= ssr.atk %>
+          <% else %>
+            <strong class="<%= atk_class %>"><%= ssr.atk %></strong>
+          <% end %>
+          </td>
+
+          <td>
+            <% if stamina_class == "" %>
+              <%= ssr.status_str(ssr.stamina) %>
+            <% else %>
+              <strong class="<%= stamina_class %>"><%= ssr.status_str(ssr.stamina) %></strong>
+            <% end %>
+          </td>
+
+          <td>
+            <% if speed_class == "" %>
+              <%= ssr.status_str(ssr.speed) %>
+            <% else %>
+              <strong class="<%= speed_class %>"><%= ssr.status_str(ssr.speed) %></strong>
+            <% end %>
+          </td>
+
+          <td>
+            <% if crt_class == "" %>
+              <%= ssr.status_str(ssr.crt) %>
+            <% else %>
+              <strong class="<%= crt_class %>"><%= ssr.status_str(ssr.crt) %></strong>
+            <% end %>
+          </td>
+
+          <td>
+            <% if cost_class == "" %>
+              <%= ssr.cost %>
+            <% else %>
+              <strong class="<%= cost_class %>"><%= ssr.cost %></strong>
+            <% end %>
+          </td>
+
+          <td>
+            <% if sp_class == "" %>
+              <%= ssr.sp %>
+            <% else %>
+              <strong class="<%= sp_class %>"><%= ssr.sp %></strong>
+            <% end %>
+          </td>
+
+          <td>
+            <% sp_ratio = "%.15g"%(ssr.sp_ratio / 10.0) %>
+            <% if sp_ratio_class == "" %>
+              <%= sp_ratio %>
+            <% else %>
+              <strong class="<%= sp_ratio_class %>"><%= sp_ratio %></strong>
+            <% end %>
+          </td>
+          <td>
+            <% sp_atk = "%.15g"%(ssr.sp_atk / 10) %>
+            <% if sp_atk_class == "" %>
+              <%= sp_atk %>
+            <% else %>
+              <strong class="<%= sp_atk_class %>"><%= sp_atk %></strong>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>
