@@ -2,6 +2,7 @@ require 'csv'
 
 class Ssr < ApplicationRecord
   belongs_to :hero
+  default_scope -> { order(color: :asc) }
   
   # SSR名
   validates :name, presence: true,
