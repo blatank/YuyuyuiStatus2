@@ -18,6 +18,6 @@ class CreateSsrs < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     # ユニーク
-    add_index :ssrs, [:name, :hero], unique: true
+    # add_index :ssrs, [:name, :hero], unique: true
   end
 end

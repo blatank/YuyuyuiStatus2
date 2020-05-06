@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_05_05_055030) do
     t.integer "hero_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"name\", \"hero\"", name: "index_ssrs_on_name_and_hero", unique: true
     t.index ["hero_id"], name: "index_ssrs_on_hero_id"
   end
 
