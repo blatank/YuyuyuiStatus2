@@ -2,9 +2,7 @@ require 'test_helper'
 
 class SsrTest < ActiveSupport::TestCase
   def setup
-    @ssr  = ssrs(:ssrtest)
-    @hero = heros(:wassy)
-    @ssr.hero_id = @hero.id
+    @ssr  = ssrs(:ssrtest1)
     
     @valid_status   = [0, 20] # "F-", "S+"
     @invalid_status = [@valid_status.min-1, @valid_status.max+1, 1.5]

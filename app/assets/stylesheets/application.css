@@ -30,9 +30,17 @@ h1 {
   margin: 0px;
 }
 
+h2 {
+  margin: 0px;
+}
+
 /* common */
 a:link, a:visited {
   color: #0000ff;
+}
+
+#explain h2 {
+  font-size: 12px;
 }
 
 table {
@@ -102,10 +110,12 @@ strong.weakest {
 
 ul {
   display: inline-block;
+  margin: 0 0 10px;
 }
 
 ul li {
   text-align: left;
+  font-size: 14px;
 }
 
 

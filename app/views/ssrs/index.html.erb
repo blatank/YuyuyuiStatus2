@@ -1,8 +1,10 @@
+<% provide(:title, "SSRステータス(全体)") %>
 <header>
-  <h1><%= @title %></h1>
+  <h1><%= yield(:title) %></h1>
 </header>
 <main>
   <section id="explain">
+    <h2>注意</h2>
     <ul>
       <li><span class="UR">　</span>色の行はURの勇者です(参考値)。</li>
       <li><span class="SR">　</span>色の行はSRの勇者です(参考値。データは弥勒蓮華しか入れてません)。</li>
@@ -28,7 +30,7 @@
         <th>コスト</th>	
         <th>SP</th>
         <th>必殺技<br>倍率</th>
-        <th>必殺技<br>ATK<br><a href="?<%= @query_str %>order=asc_sp_atk">▲</a><a href="?<%= @query_str %>order=desc_sp_atk">▼</a></th>
+        <th>必殺技<br>ATK</th>
       </tr>
     </thead>
     <tbody>

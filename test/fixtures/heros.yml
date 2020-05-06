@@ -2,3 +2,10 @@ wassy:
   name: "鷲尾須美"
   hero_type: "遠射"
 
+gin:
+  name: "三ノ輪銀"
+  hero_type: "近接"
+  
+sonochu:
+  name: "乃木園子(中学生)"
+  hero_type: "範囲"
