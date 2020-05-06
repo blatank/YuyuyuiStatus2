@@ -13,5 +13,5 @@ ssrtest:
   sp: 28
   sp_ratio: 150 # LSB[0.1]
   sp_atk: 32700
-  hero: 1 # 適当
+  hero: wassy
 
