@@ -1,6 +1,6 @@
 # README
 
-HTMLとCSVで管理していた初代(https://github.com/blatank/YuyuyuiStatus/)のRails運用版
+HTMLとCSVで管理していた[初代](https://github.com/blatank/YuyuyuiStatus/)のRails運用版
 
 ## サーバ稼働方法
 ```
