@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+HTMLとCSVで管理していた初代(https://github.com/blatank/YuyuyuiStatus/)のRails運用版
 
-Things you may want to cover:
+## サーバ稼働方法
+```
+$ rails db:migrate
+$ rails db:seed # CSVファイルからDBにインポートしています
+$ rails server
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Herokuで運用中
+https://yuyuyui-status.herokuapp.com/
