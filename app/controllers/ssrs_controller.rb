@@ -1,5 +1,5 @@
 class SsrsController < ApplicationController
-  def home
+  def index
     @ssrs = Ssr.all
     @title = "SSRステータス"
     cal_maxmin
