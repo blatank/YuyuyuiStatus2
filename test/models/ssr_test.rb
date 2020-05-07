@@ -47,30 +47,6 @@ class SsrTest < ActiveSupport::TestCase
     end
   end
   
-  # color validation
-  test "color should be present" do
-    @ssr.color = "  "
-    assert_not @ssr.valid?
-  end
-  
-  # color validation(range)
-  test "color should be pattern" do
-    valid_color = 0..4
-    invalid_color = [-1, 5, 1.5]
-    
-    # valid test
-    valid_color.each do |color|
-      @ssr.color = color
-      assert @ssr.valid?, "#{color.inspect} should be valid"
-    end
-    
-    # invalid test
-    invalid_color.each do |color|
-      @ssr.color = color
-      assert_not @ssr.valid?, "#{color.inspect} should be invalid"
-    end
-  end
-  
   # 踏ん張り
   test "stamina should be present" do
     @ssr.stamina = ""

@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_055030) do
+ActiveRecord::Schema.define(version: 2020_05_07_140327) do
+
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "hero_types", force: :cascade do |t|
     t.string "name"
@@ -28,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_055030) do
 
   create_table "ssrs", force: :cascade do |t|
     t.string "name"
-    t.integer "color"
+    t.integer "color_id"
     t.string "rare"
     t.integer "hp"
     t.integer "atk"

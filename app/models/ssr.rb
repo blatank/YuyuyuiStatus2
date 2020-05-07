@@ -2,19 +2,13 @@ require 'csv'
 
 class Ssr < ApplicationRecord
   belongs_to :hero
-  default_scope -> { order(color: :asc, hero_id: :asc) }
+  belongs_to :color, class_name: "Color"
+  
+  default_scope -> { order(color_id: :asc, hero_id: :asc) }
   
   # SSR名
   validates :name, presence: true,
                      length: { maximum: 20 }
-  
-  # 属性
-  COLOR_NUM     = { "red" => 0, "blue" => 1, "green" => 2, "yellow" => 3, "purple" => 4}
-  COLOR_NUM_INV = COLOR_NUM.invert
-  validates :color,     presence: true,
-                    numericality: { only_integer: true,
-                        greater_than_or_equal_to: COLOR_NUM["red"],
-                           less_than_or_equal_to: COLOR_NUM["purple"] }
 
   # レア
   VALID_RARE_REGEX = /\A(R|SR|SSR|UR)\z/
@@ -78,11 +72,6 @@ class Ssr < ApplicationRecord
   validates :sp_atk,        presence: true,
                         numericality: { only_integer: true,
                             greater_than_or_equal_to: 0 }
-
-  # 属性を文字列で出力
-  def color_str
-    COLOR_NUM_INV[color]
-  end
   
   # ステータスを文字列で出力
   def status_str(value)
@@ -117,8 +106,7 @@ class Ssr < ApplicationRecord
       hero = Hero.find_by(name: hero_name)
       if hero
         datas.each do |line|
-          p
-          color    = COLOR_NUM[line[0]]
+          color    = Color.find_by(name: line[0])
           rare     = line[1]
           name     = line[2]
           hp       = line[3].to_i
@@ -134,19 +122,19 @@ class Ssr < ApplicationRecord
           # 必殺技倍率は10倍して入れる
           sp_ratio = (line[10].to_f * 10).to_i
           sp_atk   = atk * sp_ratio
-          Ssr.create!(color: color,
-                       rare: rare,
-                       name: name,
-                         hp: hp,
-                        atk: atk,
-                    stamina: stamina,
-                      speed: speed,
-                        crt: crt,
-                       cost: cost,
-                         sp: sp,
-                   sp_ratio: sp_ratio,
-                     sp_atk: sp_atk,
-                    hero_id: hero_id)
+          Ssr.create!(color_id: color.id,
+                          rare: rare,
+                          name: name,
+                            hp: hp,
+                           atk: atk,
+                      stamina: stamina,
+                         speed: speed,
+                           crt: crt,
+                          cost: cost,
+                            sp: sp,
+                      sp_ratio: sp_ratio,
+                        sp_atk: sp_atk,
+                       hero_id: hero_id)
         end
       end
     end

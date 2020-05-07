@@ -2,7 +2,7 @@
 
 ssrtest1:
   name: "共に在る日々"
-  color: 3
+  color: yellow
   rare: "SSR"
   hp: 2030
   atk: 2180
@@ -17,7 +17,7 @@ ssrtest1:
 
 ssrtest2:
   name: "信頼"
-  color: 0
+  color: red
   rare: "SSR"
   hp: 1890
   atk: 4090
