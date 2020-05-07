@@ -48,7 +48,7 @@
         <tr class="<%= ssr.rare %>">
           <td class="attr_<%= ssr.color_str %> ssr_color">　</td>
           <td class="ssr"><%= link_to ssr.hero.name, hero_path(ssr.hero) %></td>
-          <td class="ssrtype"><%= ssr.hero.hero_type %></td>
+          <td class="ssrtype"><%= link_to ssr.hero.hero_type.name, hero_type_path(ssr.hero.hero_type) %></td>
           <td class="ssrname"><%= ssr.name %></td>
 
           <td>

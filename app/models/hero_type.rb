@@ -1,4 +1,6 @@
 class HeroType < ApplicationRecord
+  has_many :heros
+  
   # hero_type validation
   VALID_HERO_TYPE_REGEX = /\A(巫女|遠射|範囲|近接)\z/
   validates :name, presence: true,

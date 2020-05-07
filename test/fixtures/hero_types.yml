@@ -1,7 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+ensya:
+  name: "遠射"
 
-two:
-  name: MyString
+kinsetsu:
+  name: "近接"
+
+hani:
+  name: "範囲"
+  
+miko:
+  name: "巫女"
+

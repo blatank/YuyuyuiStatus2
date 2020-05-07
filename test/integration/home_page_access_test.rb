@@ -34,5 +34,11 @@ class HomePageAccessTest < ActionDispatch::IntegrationTest
     # 登録されていない勇者のセルがない
     # p Ssr.all
     assert_select "td", text: @no_hero.name, count: 0
+    
+    # リンク確認(@test1, @test2はタイプも違うのでカウント数も別々になるはず)
+    assert_select "a[href=?]", hero_path(@test1.hero), count: 1
+    assert_select "a[href=?]", hero_path(@test2.hero), count: 1
+    assert_select "a[href=?]", hero_type_path(@test1.hero.hero_type), count: 1
+    assert_select "a[href=?]", hero_type_path(@test2.hero.hero_type), count: 1
   end
 end
