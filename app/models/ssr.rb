@@ -4,7 +4,7 @@ class Ssr < ApplicationRecord
   belongs_to :hero
   belongs_to :color
   
-  default_scope -> { order(color_id: :asc, hero_id: :asc) }
+  default_scope -> { order(color_id: :asc, id: :asc) }
   
   # SSR名
   validates :name, presence: true,
