@@ -6,12 +6,16 @@ class Color < ApplicationRecord
   validates :name, presence: true,
                     format: { with: VALID_COLOR_REGEX }
 
+  VALID_COLOR_MEAN_REGEX = /\A(赤|青|緑|黄|紫)\z/
+  validates :mean, presence: true,
+                    format: { with: VALID_COLOR_MEAN_REGEX }
+
   # データインポート
   def self.import
-    Color.create!(name: "red")
-    Color.create!(name: "blue")
-    Color.create!(name: "green")
-    Color.create!(name: "yellow")
-    Color.create!(name: "purple")
+    Color.create!(name: "red",    mean: "赤")
+    Color.create!(name: "blue",   mean: "青")
+    Color.create!(name: "green",  mean: "緑")
+    Color.create!(name: "yellow", mean: "黄")
+    Color.create!(name: "purple", mean: "紫")
   end
 end

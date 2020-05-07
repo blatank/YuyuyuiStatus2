@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_140327) do
+ActiveRecord::Schema.define(version: 2020_05_07_142033) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "mean"
   end
 
   create_table "hero_types", force: :cascade do |t|

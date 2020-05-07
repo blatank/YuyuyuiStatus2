@@ -2,6 +2,12 @@
 
 red:
   name: "red"
+  mean: "赤"
   
+blue:
+  name: "blue"
+  mean: "青"  
+
 yellow:
   name: "yellow"
+  mean: "黄"

@@ -27,4 +27,28 @@ class ColorTest < ActiveSupport::TestCase
       assert_not @color.valid?, "#{color.inspect} should be invalid"
     end
   end
+
+  # color meaining validation
+  test "mean should be present" do
+    @color.mean = "  "
+    assert_not @color.valid?
+  end
+  
+  # color meaining validation(range)
+  test "mean should be pattern" do
+    valid_mean = %w[赤 青 黄 緑 紫]
+    invalid_mean = %w[金 白 UR 銀 火]
+    
+    # valid test
+    valid_mean.each do |mean|
+      @color.mean = mean
+      assert @color.valid?, "#{mean.inspect} should be valid"
+    end
+    
+    # invalid test
+    invalid_mean.each do |mean|
+      @color.mean = mean
+      assert_not @color.valid?, "#{mean.inspect} should be invalid"
+    end
+  end
 end

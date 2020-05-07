@@ -2,7 +2,7 @@ require 'csv'
 
 class Ssr < ApplicationRecord
   belongs_to :hero
-  belongs_to :color, class_name: "Color"
+  belongs_to :color
   
   default_scope -> { order(color_id: :asc, hero_id: :asc) }
   
