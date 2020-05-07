@@ -40,5 +40,8 @@ class HomePageAccessTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", hero_path(@test2.hero), count: 1
     assert_select "a[href=?]", hero_type_path(@test1.hero.hero_type), count: 1
     assert_select "a[href=?]", hero_type_path(@test2.hero.hero_type), count: 1
+    assert_select "a[href=?]", color_path(@test1.color), count: 1
+    assert_select "a[href=?]", color_path(@test2.color), count: 1
+    
   end
 end

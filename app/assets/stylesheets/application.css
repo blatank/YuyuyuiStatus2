@@ -88,8 +88,14 @@ strong.weakest {
   background-color: purple;
 }
 .hero_color a {
-  display: inline-block;
+  display: block;
   text-decoration: none;
+  height: 44px;
+}
+
+td.hero_color  {
+  margin: 0;
+  padding: 0;
 }
 
 .UR {
@@ -117,8 +123,6 @@ ul li {
   text-align: left;
   font-size: 14px;
 }
-
-
 
 /* midium screen */
 @media (min-width: 600px) {
