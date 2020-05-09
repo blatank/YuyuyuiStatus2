@@ -10,16 +10,26 @@ class ColorTest < ActiveSupport::TestCase
     assert_not @color.valid?
   end
   
+  # color validation(unique)
+  test "color should be unique" do
+    new_color = @color.dup
+    assert_not new_color.valid?
+  end
+  
   # color validation(range)
   test "color should be pattern" do
-    valid_color = %w[red blue yellow green purple]
-    invalid_color = %w[gold white UR silver fire]
+    valid_color = [:red, :blue, :yellow, :green, :purple]
     
     # valid test
-    valid_color.each do |color|
-      @color.name = color
-      assert @color.valid?, "#{color.inspect} should be valid"
+    valid_color.each do |c|
+      color = colors(c)
+      assert color.valid?, "#{color.name.inspect} should be valid"
     end
+  end
+    
+  # color validation(range)
+  test "color should not be other pattern" do
+    invalid_color = %w[gold white UR silver fire]
     
     # invalid test
     invalid_color.each do |color|

@@ -3,7 +3,7 @@ require 'test_helper'
 class HeroTypeTest < ActiveSupport::TestCase
   
   def setup
-    @hero_type = HeroType.new(name: "近接")
+    @hero_type = hero_types(:kinsetsu)
   end
   
   # 勇者タイプが空白ではないこと
@@ -18,16 +18,25 @@ class HeroTypeTest < ActiveSupport::TestCase
     assert_not @hero_type.valid?
   end
   
-  # 勇者タイプが意図しないタイプではないこと
+  # ユニークであること
+  test "hero_type should be unique" do
+    new_type = @hero_type.dup
+    assert_not new_type.valid?
+  end
+  
+  # 存在する勇者タイプは有効になること
   test "hero_type should be 4type" do
-    valid_types   = %w[近接 範囲 遠射 巫女]
-    invalid_types = %w[勇者 女 大赦]
+    valid_types = [:kinsetsu, :hani, :ensya, :miko]
     
-    # 有効確認
     valid_types.each do |t|
-      @hero_type.name = t
-      assert @hero_type.valid?, "#{t.inspect} should be valid"
+      hero_type = hero_types(t)
+      assert hero_type.valid?, "#{hero_type.name.inspect} should be valid"
     end
+  end
+  
+  # 勇者タイプが意図しないタイプではないこと
+  test "hero_type should not be out of 4type" do
+    invalid_types = %w[勇者 女 大赦]
     
     # 無効確認
     invalid_types.each do |t|

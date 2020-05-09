@@ -8,7 +8,8 @@ class Ssr < ApplicationRecord
   
   # SSR名
   validates :name, presence: true,
-                     length: { maximum: 20 }
+                     length: { maximum: 20 },
+                 uniqueness: true
 
   # レア
   VALID_RARE_REGEX = /\A(R|SR|SSR|UR)\z/
@@ -96,12 +97,14 @@ class Ssr < ApplicationRecord
   # CSVからのインポート
   def self.csv_import(dir_path = 'db/csv/*.csv')
     Dir.glob(dir_path) do |f|
-      puts f
       datas = CSV.open(f)
       
       # 勇者名を取得。および先頭行を省く
       topRow   = datas.shift
       hero_name = topRow[0]
+      
+      # debug増やした数を数える
+      num = 0
       
       hero = Hero.find_by(name: hero_name)
       if hero
@@ -122,21 +125,28 @@ class Ssr < ApplicationRecord
           # 必殺技倍率は10倍して入れる
           sp_ratio = (line[10].to_f * 10).to_i
           sp_atk   = atk * sp_ratio
-          Ssr.create!(color_id: color.id,
-                          rare: rare,
-                          name: name,
-                            hp: hp,
-                           atk: atk,
-                      stamina: stamina,
-                         speed: speed,
-                           crt: crt,
-                          cost: cost,
-                            sp: sp,
-                      sp_ratio: sp_ratio,
-                        sp_atk: sp_atk,
-                       hero_id: hero_id)
+          # Ssr.create(color_id: color.id,
+          ssr = Ssr.new(color_id: color.id,
+                            rare: rare,
+                            name: name,
+                              hp: hp,
+                             atk: atk,
+                         stamina: stamina,
+                           speed: speed,
+                             crt: crt,
+                            cost: cost,
+                              sp: sp,
+                        sp_ratio: sp_ratio,
+                          sp_atk: sp_atk,
+                         hero_id: hero_id)
+          
+          if ssr.valid?
+            ssr.save
+            num = num + 1 
+          end
         end
       end
+      puts "#{f}(+#{num})"
     end
   end
 

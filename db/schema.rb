@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_142033) do
+ActiveRecord::Schema.define(version: 2020_05_09_144119) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "mean"
+    t.index ["name"], name: "index_colors_on_name", unique: true
   end
 
   create_table "hero_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_hero_types_on_name", unique: true
   end
 
   create_table "heros", force: :cascade do |t|
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_142033) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["hero_type_id"], name: "index_heros_on_hero_type_id"
+    t.index ["name"], name: "index_heros_on_name", unique: true
   end
 
   create_table "ssrs", force: :cascade do |t|
@@ -50,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_142033) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["hero_id"], name: "index_ssrs_on_hero_id"
+    t.index ["name"], name: "index_ssrs_on_name", unique: true
   end
 
   add_foreign_key "heros", "hero_types"

@@ -6,7 +6,8 @@ class Hero < ApplicationRecord
   
   # name validation
   validates :name, presence: true,
-                     length: { maximum: 10 }
+                     length: { maximum: 10 },
+                 uniqueness: true
   
   # CSVからのインポート
   def self.csv_import(dir_path = 'db/csv/*.csv')
@@ -20,7 +21,8 @@ class Hero < ApplicationRecord
       # [1]はファイル名に相当する箇所なので
       hero_type_id = HeroType.find_by(name: topRow[2]).id
       
-      Hero.create!(name: hero_name, hero_type_id: hero_type_id)
+      new_hero = Hero.new(name: hero_name, hero_type_id: hero_type_id)
+      new_hero.save if new_hero.valid?
     end
   end
 end

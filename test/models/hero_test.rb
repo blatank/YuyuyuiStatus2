@@ -21,4 +21,10 @@ class HeroTest < ActiveSupport::TestCase
     @hero.name = "あああああああああああ"
     assert_not @hero.valid?
   end
+  
+  # 名前がユニークであること
+  test "name shoud be unique" do
+    new_hero = @hero.dup
+    assert_not new_hero.valid?
+  end
 end

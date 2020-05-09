@@ -5,14 +5,17 @@ class HeroType < ApplicationRecord
   VALID_HERO_TYPE_REGEX = /\A(巫女|遠射|範囲|近接)\z/
   validates :name, presence: true,
                      length: { maximum: 2 },
-                     format: { with: VALID_HERO_TYPE_REGEX }
+                     format: { with: VALID_HERO_TYPE_REGEX },
+                 uniqueness: true
 
   # CSVからのインポート
   def self.import
     # 決め打ち
-    HeroType.create!(name: "近接")
-    HeroType.create!(name: "遠射")
-    HeroType.create!(name: "範囲")
-    HeroType.create!(name: "巫女")
+    types = ["近接", "遠射", "範囲", "巫女"]
+    
+    types.each do |t|
+      new_type = HeroType.new(name: t)
+      new_type.save if new_type.valid?
+    end
   end
 end

@@ -25,6 +25,12 @@ class SsrTest < ActiveSupport::TestCase
     assert_not @ssr.valid?
   end
   
+  # name validation(unique)
+  test "name should be unique" do
+    new_ssr = @ssr.dup
+    assert_not new_ssr.valid?
+  end 
+  
   # rare validation
   test "rare should be present" do
     @ssr.rare = "   "
