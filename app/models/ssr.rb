@@ -4,7 +4,7 @@ class Ssr < ApplicationRecord
   belongs_to :hero
   belongs_to :color
   
-  default_scope -> { order(color_id: :asc, id: :asc) }
+  default_scope -> { order(color_id: :asc, hero_id: :asc) }
   
   # SSR名
   validates :name, presence: true,
@@ -12,7 +12,7 @@ class Ssr < ApplicationRecord
                  uniqueness: true
 
   # レア
-  VALID_RARE_REGEX = /\A(R|SR|SSR|UR)\z/
+  VALID_RARE_REGEX = /\A(R|SR|MR|SSR|UR)\z/
   validates :rare, presence: true,
                      format: { with: VALID_RARE_REGEX }
   
