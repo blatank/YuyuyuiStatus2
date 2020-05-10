@@ -2,46 +2,28 @@ require 'test_helper'
 
 class HomePageAccessTest < ActionDispatch::IntegrationTest
   def setup
-    @test1 = ssrs(:ssrtest1)
-    @test2 = ssrs(:ssrtest2)
-    @no_hero = heros(:sonochu)
+    
   end
   
-  test "home page access" do
-    # rootにアクセス
+  test "access home" do
     get root_path
+    assert_response :success
+    assert_template 'static_pages/home'
     
-    # テンプレート確認
-    assert_template 'ssrs/index'
+    # リンクチェック
+    ## 全SSRへのリンクがある
+    assert_select "a[href=?]", ssrs_path, count: 1
     
-    # タイトル確認
-    assert_select "title", "SSRステータス(全体) | ゆゆゆいSSRステータス"
+    ## 各勇者別のページへのリンクがある
+    heros = Hero.all
+    heros.each do |hero|
+      assert_select "a[href=?]", hero_path(hero), count: 1
+    end
     
-    # 注意書きがあることを確認
-    assert_select "h2", "注意"
-    
-    # 登録されたSsrの分だけテーブルの行があることを確認
-    assert_select "tr", count: Ssr.count+1
-    
-    # 登録されたSSRのセルがある
-    assert_select "td", text: @test1.name, count:1
-    assert_select "td", text: @test2.name, count:1
-
-    # 登録された勇者のセルがある
-    assert_select "td", text: @test1.hero.name, count:1
-    assert_select "td", text: @test2.hero.name, count:1
-    
-    # 登録されていない勇者のセルがない
-    # p Ssr.all
-    assert_select "td", text: @no_hero.name, count: 0
-    
-    # リンク確認(@test1, @test2はタイプも違うのでカウント数も別々になるはず)
-    assert_select "a[href=?]", hero_path(@test1.hero), count: 1
-    assert_select "a[href=?]", hero_path(@test2.hero), count: 1
-    assert_select "a[href=?]", hero_type_path(@test1.hero.hero_type), count: 1
-    assert_select "a[href=?]", hero_type_path(@test2.hero.hero_type), count: 1
-    assert_select "a[href=?]", color_path(@test1.color), count: 1
-    assert_select "a[href=?]", color_path(@test2.color), count: 1
-    
+    ## 属性別へのリンクがある
+    colors = Color.all
+    colors.each do |color|
+      assert_select "a[href=?]", color_path(color), text: color.mean, count: 1
+    end
   end
 end

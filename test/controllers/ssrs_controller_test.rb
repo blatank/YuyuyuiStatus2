@@ -6,8 +6,8 @@ class SsrsControllerTest < ActionDispatch::IntegrationTest
     # @ssr  = ssrs(:ssrtest)
   end
   
-  test "should get root" do
-    get root_path
+  test "should get index" do
+    get ssrs_path
     assert_response :success
     assert_template 'ssrs/index'
   end

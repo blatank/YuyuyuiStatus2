@@ -1,0 +1,18 @@
+<main>
+  <h2>おしながき</h2>
+  
+  <h3>勇者別表示</h3>
+  <ul>
+    <li><%= link_to "全勇者(重いよ！)", ssrs_path %></li>
+    <% @heros.each do |hero| %>
+      <li><%= link_to hero.name, hero_path(hero) %></li>
+    <% end %>
+  </ul>
+  
+  <h3>属性別表示</h3>
+  <ul>
+    <% @colors.each do |color| %>
+      <li><%= link_to color.mean, color_path(color) %></li>
+    <% end %>
+  </ul>
+</main>
