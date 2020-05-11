@@ -1,18 +1,45 @@
 <main>
-  <h2>おしながき</h2>
-  
-  <h3>勇者別表示</h3>
-  <ul>
-    <li><%= link_to "全勇者(重いよ！)", ssrs_path %></li>
-    <% @heros.each do |hero| %>
-      <li><%= link_to hero.name, hero_path(hero) %></li>
-    <% end %>
-  </ul>
-  
-  <h3>属性別表示</h3>
-  <ul>
-    <% @colors.each do |color| %>
-      <li><%= link_to color.mean, color_path(color) %></li>
-    <% end %>
-  </ul>
+  <h2 class="mb-5">おしながき</h2>
+
+  <div class="container">
+    <section class="mb-4">
+      <h3>全勇者表示</h3>
+      <div class="row">
+        <div class="col-12">
+          <%= link_to "下記全勇者(重いよ！)", ssrs_path, class: "btn btn-warning text-white my-1" %>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-4">
+      <h3>勇者別表示</h3>
+      
+
+      <div class="row">
+        <% @heros.each do |hero| %>
+          <div class="col-3">
+            <%= link_to hero.name, hero_path(hero), class: "btn btn-primary text-white my-1" %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="mb-4">
+      <h3>属性別表示</h3>
+      <div class="row">
+          <% @colors.each do |color| %>
+              <div class="col-4"><%= link_to color.mean, color_path(color), class: "btn btn-primary text-white my-1" %></div>
+          <% end %>
+      </div>      
+    </section>
+
+    <section class="mb-4">
+      <h3>勇者タイプ別表示</h3>
+      <div class="row">
+          <% @hero_types.each do |hero_type| %>
+              <div class="col-3"><%= link_to hero_type.name, hero_type_path(hero_type), class: "btn btn-primary text-white my-1" %></div>
+          <% end %>
+      </div>      
+    </section>
+  </div>
 </main>
