@@ -1,45 +1,52 @@
 <main>
-  <h2 class="mb-5">おしながき</h2>
+  <h2 class="mb-5">ゆゆゆいSSRステータス　トップページ</h2>
+  
+  <div class="mb-4">
+    <h3>おしらせ</h3>
+    <p class="font-weight-lighter text-info">トップページのレイアウト調整中。</p>
+  </div>
 
-  <div class="container">
-    <section class="mb-4">
-      <h3>全勇者表示</h3>
-      <div class="row">
-        <div class="col-12">
-          <%= link_to "下記全勇者(重いよ！)", ssrs_path, class: "btn btn-warning text-white my-1" %>
-        </div>
-      </div>
-    </section>
-
+  <div class="container w-75 mx-auto">
     <section class="mb-4">
       <h3>勇者別表示</h3>
       
-
-      <div class="row">
-        <% @heros.each do |hero| %>
-          <div class="col-3">
-            <%= link_to hero.name, hero_path(hero), class: "btn btn-primary text-white my-1" %>
-          </div>
-        <% end %>
-      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <% @heros.each do |hero| %>
+            <% if hero.ssrs.count > 0 %>
+              <li class="breadcrumb-item"><%= link_to hero.name, hero_path(hero) %></li>
+            <% end %>
+          <% end %>
+          <li class="breadcrumb-item"><%= link_to "全勇者(重い)", ssrs_path %></li>
+        </ol>
+      </nav>
     </section>
 
     <section class="mb-4">
       <h3>属性別表示</h3>
-      <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
           <% @colors.each do |color| %>
-              <div class="col-4"><%= link_to color.mean, color_path(color), class: "btn btn-primary text-white my-1" %></div>
+            <li class="breadcrumb-item"><%= link_to color.mean, color_path(color) %></li>
           <% end %>
-      </div>      
+        </ol>
+      </nav>   
     </section>
 
     <section class="mb-4">
       <h3>勇者タイプ別表示</h3>
-      <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
           <% @hero_types.each do |hero_type| %>
-              <div class="col-3"><%= link_to hero_type.name, hero_type_path(hero_type), class: "btn btn-primary text-white my-1" %></div>
+            <% if hero_type.heros.count > 0 %>
+              <li class="breadcrumb-item"><%= link_to hero_type.name, hero_type_path(hero_type) %></li>
+            <% end %>
           <% end %>
-      </div>      
+        </ol>
+      </nav>      
     </section>
+
+  
+
   </div>
 </main>
