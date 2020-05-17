@@ -9,8 +9,8 @@ class Ssr < ApplicationRecord
   # SSR名
   validates :name, presence: true,
                      length: { maximum: 20 },
-                 uniqueness: true
-
+                 uniqueness: { scope: :hero_id,
+                               message: "同じ名前のSSRは1つの勇者につき1つまでです" }
   # レア
   VALID_RARE_REGEX = /\A(R|SR|MR|SSR|UR)\z/
   validates :rare, presence: true,

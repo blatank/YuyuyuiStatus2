@@ -26,10 +26,20 @@ class SsrTest < ActiveSupport::TestCase
   end
   
   # name validation(unique)
+  # 同じ名前かつ同じ勇者のSSRは許可しない
   test "name should be unique" do
     new_ssr = @ssr.dup
     assert_not new_ssr.valid?
   end 
+  
+  # name validation(unique)
+  # 同じ名前かつ異なる勇者のSSRは許可する
+  test "name should not be unique without another hero" do
+    new_ssr = @ssr.dup
+    new_ssr.hero = heros(:gin)
+    assert new_ssr.valid?
+  end 
+  
   
   # rare validation
   test "rare should be present" do
