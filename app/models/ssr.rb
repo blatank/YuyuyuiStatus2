@@ -75,7 +75,7 @@ class Ssr < ApplicationRecord
                             greater_than_or_equal_to: 0 }
   
   # ステータスを文字列で出力
-  def status_str(value)
+  def self.status_str(value)
     STATUS_NUM_INV[value]
   end
   

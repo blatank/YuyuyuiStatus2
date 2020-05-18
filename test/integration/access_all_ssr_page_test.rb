@@ -21,7 +21,7 @@ class AccessAllSsrPageTest < ActionDispatch::IntegrationTest
     assert_select "h2", "注意"
     
     # 登録されたSsrの分だけテーブルの行があることを確認
-    assert_select "tr", count: Ssr.count+1
+    assert_select "tr", count: Ssr.count+2
     
     # 登録されたSSRのセルがある
     assert_select "td", text: @test1.name, count:1
@@ -42,6 +42,9 @@ class AccessAllSsrPageTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", hero_type_path(@test2.hero.hero_type), count: 1
     assert_select "a[href=?]", color_path(@test1.color), count: 1
     assert_select "a[href=?]", color_path(@test2.color), count: 1
+    
+    # 平均値が表示されている(tdタグで確認)
+    assert_select "td", text: "平均値(SSRのみ)", count: 1
     
     # ルートへ戻るリンクがある
     assert_select "a[href=?]", root_path

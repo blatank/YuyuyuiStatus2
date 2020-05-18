@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     
     @max = {}
     @min = {}
+    @average = {}
     order_list.each do |key, value|
       order = {} # tmp
       order[key] = value
@@ -12,8 +13,9 @@ class ApplicationController < ActionController::Base
       # ぽかよけ(SSR=0のときはデータセットしなくてもよい。参照先がなくなる)
       if @ssrs.count > 0
         tmp = unorder_ssrs.order(order)
-        @max[key] = tmp.first.send(key)
-        @min[key] = tmp.last.send(key)
+        @max[key]     = tmp.first.send(key)
+        @min[key]     = tmp.last.send(key)
+        @average[key] = tmp.average(key)
       end
     end
   end

@@ -2,8 +2,10 @@
   <h1 class="mt-5 display-4"><%= yield(:title) %></h1>
 </header>
 <main>
+  
   <section>
     <div class="container mt-4 table-responsive">
+      <h2 class="mb-3">SSR一覧</h2>
       <table class="table table-bordered table-hover">
         <thead>
           <tr class="bg-light">
@@ -61,25 +63,25 @@
     
               <td>
                 <% if stamina_class == "" %>
-                  <%= ssr.status_str(ssr.stamina) %>
+                  <%= Ssr.status_str(ssr.stamina) %>
                 <% else %>
-                  <strong class="<%= stamina_class %>"><%= ssr.status_str(ssr.stamina) %></strong>
+                  <strong class="<%= stamina_class %>"><%= Ssr.status_str(ssr.stamina) %></strong>
                 <% end %>
               </td>
     
               <td>
                 <% if speed_class == "" %>
-                  <%= ssr.status_str(ssr.speed) %>
+                  <%= Ssr.status_str(ssr.speed) %>
                 <% else %>
-                  <strong class="<%= speed_class %>"><%= ssr.status_str(ssr.speed) %></strong>
+                  <strong class="<%= speed_class %>"><%= Ssr.status_str(ssr.speed) %></strong>
                 <% end %>
               </td>
     
               <td>
                 <% if crt_class == "" %>
-                  <%= ssr.status_str(ssr.crt) %>
+                  <%= Ssr.status_str(ssr.crt) %>
                 <% else %>
-                  <strong class="<%= crt_class %>"><%= ssr.status_str(ssr.crt) %></strong>
+                  <strong class="<%= crt_class %>"><%= Ssr.status_str(ssr.crt) %></strong>
                 <% end %>
               </td>
     
@@ -117,6 +119,22 @@
               </td>
             </tr>
           <% end %>
+          
+          <% if @ssrs.count > 0 %>
+            <tr class="average">
+              <td colspan="4">平均値(SSRのみ)</td>
+              <td><%= "%.15g"%(@average[:hp].round(1)) %></td>
+              <td><%= "%.15g"%(@average[:atk].round(1)) %></td>
+              <td><%= Ssr.status_str(@average[:stamina].round) %></td>
+              <td><%= Ssr.status_str(@average[:speed].round) %></td>
+              <td><%= Ssr.status_str(@average[:crt].round) %></td>
+              <td><%= "%.15g"%(@average[:cost].round(1)) %></td>
+              <td><%= "%.15g"%(@average[:sp].round(1)) %></td>
+              <td><%= "%.15g"%(@average[:sp_ratio] / 10.0).round(1) %></td>
+              <td><%= "%.15g"%(@average[:sp_atk] / 10.0).round(1) %></td>
+            </tr>
+          <% end %>
+          
         </tbody>
       </table>
     </div>
@@ -137,4 +155,5 @@
       </ul>
     </div>
   </section>
+
 </main>

@@ -98,6 +98,10 @@ td.hero_color  {
   padding: 0;
 }
 
+.average {
+  border-top: double 1px #000;
+}
+
 .UR {
   background-color: gold;
 }
