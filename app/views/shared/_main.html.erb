@@ -1,7 +1,5 @@
-<header>
-  <h1 class="mt-5 display-4"><%= yield(:title) %></h1>
-</header>
 <main>
+  <h1 class="display-4 pt-5"><%= yield(:title) %></h1>
   
   <section>
     <div class="container mt-4 table-responsive">
@@ -155,5 +153,6 @@
       </ul>
     </div>
   </section>
-
+  
+  <%= render 'shared/backlink' %>
 </main>

@@ -143,9 +143,22 @@ ul li {
   background-color: #eaeaea;
 }
 
+label {
+  text-align: left;
+  width: 100%;
+}
 
+header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: white;
+}
 
-
+main {
+  position: relative;
+  top: 57px;
+}
 
 
 /* midium screen */
