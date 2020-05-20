@@ -151,14 +151,18 @@ label {
 header {
   position: fixed;
   z-index: 10;
+  top: 0;
   width: 100%;
   background-color: white;
 }
 
-main {
+/* ヘッダ以降の位置 */
+#after_header {
   position: relative;
   top: 57px;
 }
+
+
 
 
 /* midium screen */
