@@ -132,6 +132,22 @@ ul li {
   font-size: 14px;
 }
 
+.debug_dump {
+  text-align: left;
+  width: 100%;
+  margin-top: 45px;
+  padding: 15px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  background-color: #eaeaea;
+}
+
+
+
+
+
+
 /* midium screen */
 @media (min-width: 600px) {
   body {
