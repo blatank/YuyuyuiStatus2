@@ -41,7 +41,13 @@
               </td>
               <td class="ssr"><%= link_to ssr.hero.name, hero_path(ssr.hero) %></td>
               <td class="ssrtype"><%= link_to ssr.hero.hero_type.name, hero_type_path(ssr.hero.hero_type) %></td>
-              <td class="ssrname"><%= ssr.name %></td>
+              
+              <% if ssr.name.length > 10 %>
+                <% css_long_name = " longname" %>
+              <% else %>
+                <% css_long_name = "" %>
+              <% end %>
+              <td class="ssrname<%= css_long_name %>"><%= ssr.name %></td>
     
               <td>
               <% if hp_class == "" %>

@@ -162,7 +162,9 @@ header {
   top: 57px;
 }
 
-
+.longname {
+  font-size: 13px;
+}
 
 
 /* midium screen */
