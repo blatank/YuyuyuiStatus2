@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   resources :colors,     only: [:show]
   resources :hero_types, only: [:show]
-  resources :heros,      only: [:show]
+  resources :heros,      only: [:show] do
+    member do
+      get :spatk_desc, :atk_desc
+    end
+  end
   resources :ssrs,       only: [:index]
 end

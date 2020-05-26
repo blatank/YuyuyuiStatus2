@@ -12,14 +12,14 @@
             <th>タイプ</th>
             <th>名称</th>
             <th>HP</th>
-            <th>ATK</th>
+            <th>ATK<br><%= link_to "▼", @paths[:atk_desc] unless @paths.nil? or @paths[:atk_desc].nil? %></th>
             <th>踏張</th>
             <th>速度</th>
             <th>CRT</th>
             <th>コスト</th>	
             <th>SP</th>
             <th>必殺技<br>倍率</th>
-            <th>必殺技<br>ATK</th>
+            <th>必殺技<br>ATK<br><%= link_to "▼", @paths[:spatk_desc] unless @paths.nil? or @paths[:spatk_desc].nil? %></th>
           </tr>
         </thead>
         <tbody>
