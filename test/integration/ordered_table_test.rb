@@ -22,6 +22,7 @@ class OrderedTableTest < ActionDispatch::IntegrationTest
     
     assert_template 'heros/show'
 
+    # リンクの確認
     order_params.each do |order_param|
       orders.each do |order|
         assert_select "a[href=?]", order_hero_path(@hero, order_param, order)
@@ -40,7 +41,7 @@ class OrderedTableTest < ActionDispatch::IntegrationTest
       end
     end
 
-    # invalid access
+    ## invalid access
     get order_hero_path(@hero, "color", "admin")
     assert_response :success
     assert_template 'heros/show'
