@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :heros,      only: [:show] do
     member do
       get :spatk_desc, :atk_desc
+      get 'order/:param/:order', to: 'heros#order', as: "order"
     end
   end
   resources :ssrs,       only: [:index]

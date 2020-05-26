@@ -7,19 +7,73 @@
       <table class="table table-bordered table-hover">
         <thead>
           <tr class="bg-light">
-            <th>属性</th>
-            <th>勇者名</th>
-            <th>タイプ</th>
-            <th>名称</th>
-            <th>HP</th>
-            <th>ATK<br><%= link_to "▼", @paths[:atk_desc] unless @paths.nil? or @paths[:atk_desc].nil? %></th>
-            <th>踏張</th>
-            <th>速度</th>
-            <th>CRT</th>
-            <th>コスト</th>	
-            <th>SP</th>
-            <th>必殺技<br>倍率</th>
-            <th>必殺技<br>ATK<br><%= link_to "▼", @paths[:spatk_desc] unless @paths.nil? or @paths[:spatk_desc].nil? %></th>
+            <th>
+              属性<br>
+              <%= link_to "▼", @paths[:color_desc] unless @paths.nil? or @paths[:color_desc].nil? %>
+              <%= link_to "▲", @paths[:color_asc] unless @paths.nil? or @paths[:color_asc].nil? %>
+            </th>
+            <th>
+              勇者名<br>
+              <%= link_to "▼", @paths[:hero_name_desc] unless @paths.nil? or @paths[:hero_name_desc].nil? %>
+              <%= link_to "▲", @paths[:hero_name_asc] unless @paths.nil? or @paths[:hero_name_desc].nil? %>
+            </th>
+            <th>
+              タイプ<br>
+              <%= link_to "▼", @paths[:hero_type_desc] unless @paths.nil? or @paths[:hero_type_desc].nil? %>
+              <%= link_to "▲", @paths[:hero_type_asc] unless @paths.nil? or @paths[:hero_type_desc].nil? %>
+            </th>
+            <th>
+              名称<br>
+              <%= link_to "▼", @paths[:name_desc] unless @paths.nil? or @paths[:name_desc].nil? %>
+              <%= link_to "▲", @paths[:name_asc] unless @paths.nil? or @paths[:name_desc].nil? %>
+            </th>
+            <th>
+              HP<br>
+              <%= link_to "▼", @paths[:hp_desc] unless @paths.nil? or @paths[:hp_desc].nil? %>
+              <%= link_to "▲", @paths[:hp_asc] unless @paths.nil? or @paths[:hp_asc].nil? %>
+            </th>
+            <th>
+              ATK<br>
+              <%= link_to "▼", @paths[:atk_desc] unless @paths.nil? or @paths[:atk_desc].nil? %>
+              <%= link_to "▲", @paths[:atk_asc] unless @paths.nil? or @paths[:atk_asc].nil? %>
+            </th>
+            <th>
+              踏張<br>
+              <%= link_to "▼", @paths[:stamina_desc] unless @paths.nil? or @paths[:stamina_desc].nil? %>
+              <%= link_to "▲", @paths[:stamina_asc] unless @paths.nil? or @paths[:stamina_asc].nil? %>
+            </th>
+            <th>
+              速度<br>
+              <%= link_to "▼", @paths[:speed_desc] unless @paths.nil? or @paths[:speed_desc].nil? %>
+              <%= link_to "▲", @paths[:speed_asc] unless @paths.nil? or @paths[:speed_asc].nil? %>
+            </th>
+            <th>
+              CRT<br>
+              <%= link_to "▼", @paths[:crt_desc] unless @paths.nil? or @paths[:crt_desc].nil? %>
+              <%= link_to "▲", @paths[:crt_asc] unless @paths.nil? or @paths[:crt_asc].nil? %>
+            </th>
+            <th>
+              コスト<br>
+              <%= link_to "▼", @paths[:cost_desc] unless @paths.nil? or @paths[:cost_desc].nil? %>
+              <%= link_to "▲", @paths[:cost_asc] unless @paths.nil? or @paths[:cost_asc].nil? %>
+            </th>	
+            <th>
+              SP<br>
+              <%= link_to "▼", @paths[:sp_desc] unless @paths.nil? or @paths[:sp_desc].nil? %>
+              <%= link_to "▲", @paths[:sp_asc] unless @paths.nil? or @paths[:sp_asc].nil? %>
+            </th>
+            <th>
+              必殺技<br>
+              倍率<br>
+              <%= link_to "▼", @paths[:sp_ratio_desc] unless @paths.nil? or @paths[:sp_ratio_desc].nil? %>
+              <%= link_to "▲", @paths[:sp_ratio_asc] unless @paths.nil? or @paths[:sp_ratio_asc].nil? %>
+            </th>
+            <th>
+              必殺技<br>
+              ATK<br>
+              <%= link_to "▼", @paths[:sp_atk_desc] unless @paths.nil? or @paths[:sp_atk_desc].nil? %>
+              <%= link_to "▲", @paths[:sp_atk_asc] unless @paths.nil? or @paths[:sp_atk_asc].nil? %>
+            </th>
           </tr>
         </thead>
         <tbody>

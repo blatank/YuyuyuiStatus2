@@ -14,10 +14,39 @@ class OrderedTableTest < ActionDispatch::IntegrationTest
   end
   
   test "ordered by atk desc" do
-    get atk_desc_hero_path(@hero)
+    order_params = ["color_id", "hero_name_id", "hero_type_id", "name", "hp", "atk", "stamina", "speed", "crt", "cost", "sp", "sp_ratio", "sp_atk"]
+    orders = ["asc", "desc"]
     
+    # ます勇者別ページを開いてリンクを確認する
+    get hero_path(@hero)
+    
+    assert_template 'heros/show'
+
+    order_params.each do |order_param|
+      orders.each do |order|
+        assert_select "a[href=?]", order_hero_path(@hero, order_param, order)
+      end
+    end
+
+    # 実際にアクセスさせる
+    order_params.each do |order_param|
+      orders.each do |order|
+        get order_hero_path(@hero, order_param, order)
+        assert_response :success
+        assert_template 'heros/show'
+        
+        # alertがないことをテストする
+        assert_select "div.alert", count: 0
+      end
+    end
+
+    # invalid access
+    get order_hero_path(@hero, "color", "admin")
     assert_response :success
     assert_template 'heros/show'
     
+    # alertがあることをテストする
+    assert_select "div.alert"
+
   end
 end
