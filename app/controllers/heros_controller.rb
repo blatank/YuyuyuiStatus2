@@ -4,20 +4,9 @@ class HerosController < ApplicationController
   def show
   end
   
-  def spatk_desc
-    @ssrs = @ssrs.unscope(:order).order(sp_atk: :desc)
-
-    render 'heros/show'
-  end
-
-  def atk_desc
-    @ssrs = @ssrs.unscope(:order).order(atk: :desc)
-
-    render 'heros/show'
-  end
-  
   def order
     order_check
+    render 'heros/show'
   end
   
   private
@@ -28,8 +17,8 @@ class HerosController < ApplicationController
       @paths = {
                 color_desc: order_hero_path(@hero, "color_id",      "desc"),
                  color_asc: order_hero_path(@hero, "color_id",      "asc"),
-            hero_name_desc: order_hero_path(@hero, "hero_name_id",  "desc"),
-             hero_name_asc: order_hero_path(@hero, "hero_name_id",  "asc"),
+            hero_name_desc: order_hero_path(@hero, "hero_id",       "desc"),
+             hero_name_asc: order_hero_path(@hero, "hero_id",       "asc"),
             hero_type_desc: order_hero_path(@hero, "hero_type_id",  "desc"),
              hero_type_asc: order_hero_path(@hero, "hero_type_id",  "asc"),
                  name_desc: order_hero_path(@hero, "name",          "desc"),
@@ -55,18 +44,5 @@ class HerosController < ApplicationController
       }
 
       cal_maxmin
-    end
-    
-    def order_check
-      param_list = ["color_id", "hero_name_id", "hero_type_id", "name", "hp", "atk", "stamina", "speed", "crt", "cost", "sp", "sp_ratio", "sp_atk"]
-      order_list = ["asc", "desc"]
-      
-      if param_list.include?(params[:param]) && order_list.include?(params[:order])
-        @ssrs = @ssrs.unscope(:order).order({params[:param] => params[:order]})
-        render 'heros/show'
-      else
-        flash.now[:danger] = "並び替え情報が異常なので、デフォルトの状態で表示します。"
-        render 'heros/show'
-      end
     end
 end
