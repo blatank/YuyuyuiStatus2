@@ -7,11 +7,21 @@ Rails.application.routes.draw do
     end
   end
       
-  resources :hero_types, only: [:show]
+  resources :hero_types, only: [:show] do
+    member do
+      get 'order/:param/:order', to: 'hero_types#order', as: "order"
+    end
+  end
+  
   resources :heros,      only: [:show] do
     member do
       get 'order/:param/:order', to: 'heros#order', as: "order"
     end
   end
-  resources :ssrs,       only: [:index]
+  
+  resources :ssrs,       only: [:index] do
+    collection do
+      get 'order/:param/:order', to: 'ssrs#order', as: "order"
+    end
+  end
 end
