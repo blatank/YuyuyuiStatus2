@@ -1,7 +1,13 @@
 class SsrsController < ApplicationController
-  before_action :get_data
+  before_action :get_data, only: [:index, :order]
   def index
   end
+  
+  def edit
+    @ssr = Ssr.find(params[:id])
+    @heros = Hero.all
+  end
+
   
   def order
     order_check
@@ -43,4 +49,5 @@ class SsrsController < ApplicationController
 
       cal_maxmin
     end
+    
 end

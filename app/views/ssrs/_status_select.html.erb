@@ -1,0 +1,3 @@
+<% Ssr.status_array.each do |value, status| %>
+  <option value="<%= value %>"<%= " selected" if now == value %>><%= status %></option>
+<% end %>

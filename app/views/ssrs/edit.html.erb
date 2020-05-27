@@ -1,0 +1,53 @@
+<h1 class="mb-4"><%= "「#{@ssr.name} - #{@ssr.hero.name}」の編集" %></h1>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <%= form_with(model: @ssr, local: true) do |f| %>
+      <%= f.label :name, 'SSR名' %>
+      <%= f.text_field :name, class: "form-control mb-3" %>
+      
+      <%= f.label :hero_id, '勇者名' %>
+      
+      <%# heros_array = @heros.map { |hero| [hero.name, hero.id] } %>
+      <%#= f.select :hero_id, heros_array, class: "form-control" %>
+      <%#= ↑だとclassがうまく展開されないのでべた書き %>
+      <select name="ssr[hero_id]" id="ssr_hero_id" class="form-control mb-3">
+        <% @heros.each do |hero| %>
+          <option value="<%= hero.id %>"<%= " selected" if @ssr.hero_id == hero.id %>><%= hero.name %></option>
+        <% end %>
+      </select>
+      
+      <%= f.label :hp, "HP" %>
+      <%= f.text_field :hp, class: "form-control mb-3" %>
+      
+      <%= f.label :atk, "ATK" %>
+      <%= f.text_field :atk, class: "form-control mb-3" %>
+      
+      <%= f.label :stamina, "踏張" %>
+      <select name="ssr[stamina]" id="ssr_stamina" class="form-control mb-3">
+        <%= render 'ssrs/status_select', now: @ssr.stamina %>
+      </select>
+
+      <%= f.label :speed, "速度" %>
+      <select name="ssr[speed]" id="ssr_speed" class="form-control mb-3">
+        <%= render 'ssrs/status_select', now: @ssr.speed %>
+      </select>
+
+      <%= f.label :crt, "CRT" %>
+      <select name="ssr[crt]" id="ssr_crt" class="form-control mb-3">
+        <%= render 'ssrs/status_select', now: @ssr.crt %>
+      </select>
+      
+      <%= f.label :cost, "コスト" %>
+      <%= f.text_field :cost, class: "form-control mb-3" %>
+      <%= f.label :sp, "SP" %>
+      <%= f.text_field :sp, class: "form-control mb-3" %>
+
+      <%= f.label :sp_ratio, "必殺技倍率(10倍した値を入れて下さい)" %>
+      <%= f.text_field :sp_ratio, class: "form-control mb-3" %>
+      
+      <%= f.submit "Update", class: "btn btn-primary form-control mt-3" %>
+    <% end %>
+  </div>
+</div>

@@ -79,6 +79,10 @@ class Ssr < ApplicationRecord
     STATUS_NUM_INV[value]
   end
   
+  def self.status_array
+    STATUS_NUM_INV
+  end
+  
   # クラス判定(CSS用)
   def puts_maxmin_class(max=0, min=0, mes)
     myself = self.send(mes)
