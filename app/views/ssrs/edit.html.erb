@@ -1,4 +1,11 @@
+<% unless @ssr.hero.nil? %>
+  <%# 本来設定されてない勇者名は選択出来ないがポカよけ %>
+  <% provide(:title, "「#{@ssr.name} #{@ssr.hero.name}」の編集") %>
+<% else %>
+  <% provide(:title, "「#{@ssr.name}」の編集") %>
+<% end %>
+
 <div id="ssr-edit">
-  <h1><%= "「#{@ssr.name} - #{@ssr.hero.name}」の編集" %></h1>
+  <h1><%= yield(:title) %></h1>
   <%= render 'ssrs/form' %>
 </div>
