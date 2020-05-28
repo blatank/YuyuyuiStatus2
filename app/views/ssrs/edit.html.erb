@@ -5,6 +5,8 @@
   <% provide(:title, "「#{@ssr.name}」の編集") %>
 <% end %>
 
+<% provide(:button_text, "データ更新") %>
+
 <div id="ssr-edit">
   <h1><%= yield(:title) %></h1>
   <%= render 'ssrs/form' %>

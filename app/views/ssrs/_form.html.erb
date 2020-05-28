@@ -67,6 +67,6 @@
     
     <%= f.hidden_field :sp_atk %>
     
-    <%= f.submit "Update", class: "btn btn-primary form-control mt-3" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary form-control mt-3" %>
   <% end %>
 </div>
