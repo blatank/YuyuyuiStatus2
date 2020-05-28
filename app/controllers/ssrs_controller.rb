@@ -16,7 +16,7 @@ class SsrsController < ApplicationController
       flash[:success] = "#{@ssr.name} #{@ssr.hero.name}を登録しました"
       redirect_to @ssr
     else
-      render 'edit'
+      render 'new'
     end
   end
   
