@@ -1,0 +1,53 @@
+<% title = "#{@ssr.name} #{@ssr.hero.name}のステータス" %>
+<% provide(:title, title) %>
+
+<div id="ssr-show">
+  <h1><%= title %></h1>
+  
+  <div class="ssr-detail">
+    <div class="ssr-image">
+      <%# if @ssr.ssr_image_url %>
+      <% if false %>
+        <%= image_tag(@ssr.ssr_image_url, alt: ssr.name) %>
+      <% else %>
+       <h2 class="ssr-no-image">No Image</h2>
+      <% end %>
+    </div>
+    
+    <div class="ssr-status">
+      <table class="table">
+        <tr>
+          <td>HP</td><td><%= @ssr.hp %></td>
+        </tr>
+        <tr>
+          <td>ATK</td><td><%= @ssr.atk %></td>
+        </tr>
+        <tr>
+          <td>踏ん張り</td><td><%= Ssr.status_str(@ssr.stamina) %></td>
+        </tr>
+        <tr>
+          <td>速度</td><td><%= Ssr.status_str(@ssr.speed) %></td>
+        </tr>
+        <tr>
+          <td>CRT</td><td><%= Ssr.status_str(@ssr.crt) %></td>
+        </tr>
+        <tr>
+          <td>コスト</td><td><%= @ssr.cost %></td>
+        </tr>
+        <tr>
+          <td>SP</td><td><%= @ssr.sp %></td>
+        </tr>
+        <tr>
+          <td>必殺技倍率</td><td><%= "%.15g"%(@ssr.sp_ratio / 10) %></td>
+        </tr>
+        <tr>
+          <td>必殺技ATK</td><td><%= "%.15g"%(@ssr.sp_atk / 10) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="ssr-edit-btn">
+    <%= link_to "編集する", edit_ssr_path(@ssr), class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
+

@@ -3,6 +3,10 @@ class SsrsController < ApplicationController
   def index
   end
   
+  def show
+   @ssr = Ssr.find(params[:id])
+  end
+  
   def edit
     @ssr = Ssr.find(params[:id])
     @heros = Hero.all

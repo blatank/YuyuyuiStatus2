@@ -101,7 +101,7 @@
               <% else %>
                 <% css_long_name = "" %>
               <% end %>
-              <td class="ssrname<%= css_long_name %>"><%= ssr.name %></td>
+              <td class="ssrname<%= css_long_name %>"><%= link_to ssr.name, ssr_path(ssr) %></td>
     
               <td>
               <% if hp_class == "" %>

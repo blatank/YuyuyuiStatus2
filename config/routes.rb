@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :ssrs,       only: [:index, :edit, :update] do
+  resources :ssrs,       only: [:index, :edit, :update, :show] do
     collection do
       get 'order/:param/:order', to: 'ssrs#order', as: "order"
     end
