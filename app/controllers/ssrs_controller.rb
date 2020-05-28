@@ -3,6 +3,23 @@ class SsrsController < ApplicationController
   def index
   end
   
+  # GET /ssrs/new
+  def new
+    @ssr = Ssr.new
+  end
+  
+  # POST /ssrs
+  def create
+    @ssr = Ssr.new(ssr_params)
+    
+    if @ssr.save
+      flash[:success] = "#{@ssr.name} #{@ssr.hero.name}を登録しました"
+      redirect_to @ssr
+    else
+      render 'edit'
+    end
+  end
+  
   def show
     @ssr = Ssr.find(params[:id])
   end
@@ -14,6 +31,7 @@ class SsrsController < ApplicationController
   # PATCH /ssrs/:id
   def update
     @ssr = Ssr.find(params[:id])
+
     if @ssr.update(ssr_params)
       flash[:success] = "データ更新完了"
       redirect_to @ssr
@@ -30,7 +48,7 @@ class SsrsController < ApplicationController
   private
     # stromg parameters
     def ssr_params
-      params.require(:ssr).permit(:name, :hero_id, :rare, :color_id, :hp, :atk, :stamina, :speed, :crt, :cost, :sp, :sp_ratio)
+      params.require(:ssr).permit(:name, :hero_id, :rare, :color_id, :hp, :atk, :stamina, :speed, :crt, :cost, :sp, :sp_ratio, :sp_atk)
     end
   
     def get_data

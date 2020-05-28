@@ -60,6 +60,13 @@
     <%= f.label :sp_ratio, "必殺技倍率(10倍した値を入れて下さい)" %>
     <%= f.text_field :sp_ratio, class: "form-control mb-2" %>
     
+    <%# 保存時に計算するので現時点の値を入れる %>
+    <% if @ssr.sp_atk.nil? %>
+      <% @ssr.sp_atk = 0 %>
+    <% end %>
+    
+    <%= f.hidden_field :sp_atk %>
+    
     <%= f.submit "Update", class: "btn btn-primary form-control mt-3" %>
   <% end %>
 </div>

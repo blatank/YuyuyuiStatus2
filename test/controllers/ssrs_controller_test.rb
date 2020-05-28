@@ -12,6 +12,12 @@ class SsrsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'ssrs/index'
   end
   
+  test "should get new" do
+    get new_ssr_path
+    assert_response :success
+    assert_template 'ssrs/new'
+  end
+  
   test "should get show" do
     get ssr_path(@ssr)
     assert_response :success
