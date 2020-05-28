@@ -4,14 +4,23 @@ class SsrsController < ApplicationController
   end
   
   def show
-   @ssr = Ssr.find(params[:id])
+    @ssr = Ssr.find(params[:id])
   end
   
   def edit
     @ssr = Ssr.find(params[:id])
-    @heros = Hero.all
   end
-
+  
+  # PATCH /ssrs/:id
+  def update
+    @ssr = Ssr.find(params[:id])
+    if @ssr.update(ssr_params)
+      flash[:success] = "データ更新完了"
+      redirect_to @ssr
+    else
+      render 'edit'
+    end
+  end
   
   def order
     order_check
@@ -19,6 +28,11 @@ class SsrsController < ApplicationController
   end
   
   private
+    # stromg parameters
+    def ssr_params
+      params.require(:ssr).permit(:name, :hero_id, :rare, :color_id, :hp, :atk, :stamina, :speed, :crt, :cost, :sp, :sp_ratio)
+    end
+  
     def get_data
       @ssrs = Ssr.all
       

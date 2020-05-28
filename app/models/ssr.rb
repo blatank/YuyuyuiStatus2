@@ -1,6 +1,8 @@
 require 'csv'
 
 class Ssr < ApplicationRecord
+  before_save :calc_sp_atk
+  
   belongs_to :hero
   belongs_to :color
   
@@ -12,6 +14,7 @@ class Ssr < ApplicationRecord
                  uniqueness: { scope: :hero_id,
                                message: "同じ名前のSSRは1つの勇者につき1つまでです" }
   # レア
+  RARE_TABLE = %w[R SR MR SSR UR]
   VALID_RARE_REGEX = /\A(R|SR|MR|SSR|UR)\z/
   validates :rare, presence: true,
                      format: { with: VALID_RARE_REGEX }
@@ -77,6 +80,10 @@ class Ssr < ApplicationRecord
   # ステータスを文字列で出力
   def self.status_str(value)
     STATUS_NUM_INV[value]
+  end
+  
+  def self.rare_array
+    RARE_TABLE
   end
   
   def self.status_array
@@ -153,5 +160,10 @@ class Ssr < ApplicationRecord
       puts "#{f}(+#{num})"
     end
   end
+  
+  private
+    def calc_sp_atk
+      self.sp_atk = self.atk * self.sp_ratio
+    end
 
 end

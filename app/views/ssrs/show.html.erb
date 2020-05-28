@@ -17,6 +17,15 @@
     <div class="ssr-status">
       <table class="table">
         <tr>
+          <td>レア</td><td><%= @ssr.rare %></td>
+        </tr>
+        <tr>
+          <td>属性</td><td><%= @ssr.color.mean %></td>
+        </tr>
+        <tr>
+          <td>タイプ</td><td><%= @ssr.hero.hero_type.name %></td>
+        </tr>
+        <tr>
           <td>HP</td><td><%= @ssr.hp %></td>
         </tr>
         <tr>

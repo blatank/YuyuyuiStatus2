@@ -1,16 +1,33 @@
 <div class="ssr-form">
   <%= form_with(model: @ssr, local: true) do |f| %>
-    <%= f.label :name, 'SSR名' %>
+  
+    <%= render 'ssrs/form_error' %>
+  
+    <%= f.label :name, '名称' %>
     <%= f.text_field :name, class: "form-control mb-2" %>
     
-    <%= f.label :hero_id, '勇者名' %>
     
+    <%= f.label :hero_id, '勇者名' %>
     <%# heros_array = @heros.map { |hero| [hero.name, hero.id] } %>
     <%#= f.select :hero_id, heros_array, class: "form-control" %>
     <%#= ↑だとclassがうまく展開されないのでべた書き %>
     <select name="ssr[hero_id]" id="ssr_hero_id" class="form-control mb-2">
-      <% @heros.each do |hero| %>
-        <option value="<%= hero.id %>"<%= " selected" if @ssr.hero_id == hero.id %>><%= hero.name %></option>
+      <% Hero.all.each do |hero| %>
+        <option value="<%= hero.id %>"<%= " selected" if @ssr.hero_id == hero.id %>><%= hero.name %>[<%= hero.hero_type.name %>]</option>
+      <% end %>
+    </select>
+    
+    <%= f.label :rare, 'レア' %>
+    <select name="ssr[rare]" id="ssr_rare" class="form-control mb-2">
+      <% Ssr.rare_array.each do |rare| %>
+        <option value="<%= rare %>"  <%= " selected" if @ssr.rare == rare %>><%= rare %></option>
+      <% end %>
+    </select>
+    
+    <%= f.label :color_id, '属性' %>
+    <select name="ssr[color_id]", id="ssr_color_id" class="form-control mb-2">
+      <% Color.all.each do |color| %>
+        <option value="<%= color.id %>"<%= " selected" if @ssr.color_id == color.id %>><%= color.mean %></option>
       <% end %>
     </select>
     
