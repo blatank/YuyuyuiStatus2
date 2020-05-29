@@ -207,6 +207,12 @@ header {
   margin: 20px auto;
 }
 
+/* user form */
+.user-form {
+  width: 70%;
+  margin: 20px auto;  
+}
+
 /* べた書き。scss使うになったら元に戻す(RailsTutorialの形に戻す) */
 #error_explanation {
   color: red;

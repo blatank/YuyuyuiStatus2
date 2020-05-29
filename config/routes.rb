@@ -25,4 +25,7 @@ Rails.application.routes.draw do
       get 'order/:param/:order', to: 'ssrs#order', as: "order"
     end
   end
+  
+  get '/signup', to: 'users#new'
+  resources :users
 end

@@ -24,5 +24,9 @@ class SsrsEditTest < ActionDispatch::IntegrationTest
                                           }
                                   }
     assert_template 'ssrs/edit'
+    
+    # エラーメッセージをチェック
+    assert_select 'div#error_explanation'
+    assert_select 'div.field_with_errors'
   end
 end
