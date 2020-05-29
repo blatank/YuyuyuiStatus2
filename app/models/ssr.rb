@@ -77,6 +77,12 @@ class Ssr < ApplicationRecord
                         numericality: { only_integer: true,
                             greater_than_or_equal_to: 0 }
   
+  # image_url
+  # 設定無しとhttps//から始まる画像ファイルは許す
+  IMAGE_URL_REGEX = /\A(|https:\/\/[a-zA-Z][a-zA-Z0-9\.\/\-_]+\.(jpg|jpeg|png|gif|svg|bmp))\z/i
+  validates :image_url,   length: { maximum: 1000 },
+                          format: {    with: IMAGE_URL_REGEX}
+  
   # ステータスを文字列で出力
   def self.status_str(value)
     STATUS_NUM_INV[value]

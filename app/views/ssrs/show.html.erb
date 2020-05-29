@@ -6,9 +6,8 @@
   
   <div class="ssr-detail">
     <div class="ssr-image">
-      <%# if @ssr.ssr_image_url %>
-      <% if false %>
-        <%= image_tag(@ssr.ssr_image_url, alt: ssr.name) %>
+      <% if @ssr.image_url && @ssr.image_url.length > 0 %>
+        <%= image_tag(@ssr.image_url, alt: "#{@ssr.name}-#{@ssr.hero.name}") %>
       <% else %>
        <h2 class="ssr-no-image">No Image</h2>
       <% end %>

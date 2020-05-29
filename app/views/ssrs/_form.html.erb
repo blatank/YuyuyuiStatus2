@@ -67,6 +67,9 @@
     
     <%= f.hidden_field :sp_atk %>
     
+    <%= f.label :image_url, "画像ファイル(任意)" %>
+    <%= f.text_field :image_url, class: "form-control mb-2" %>
+    
     <%= f.submit yield(:button_text), class: "btn btn-primary form-control mt-3" %>
   <% end %>
 </div>

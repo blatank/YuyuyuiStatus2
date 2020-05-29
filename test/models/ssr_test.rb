@@ -129,11 +129,11 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_hp.each do |hp|
       @ssr.hp = hp
-      assert @ssr.valid?, "#{hp.inspect} shoud be valid"
+      assert @ssr.valid?, "#{hp.inspect} should be valid"
     end
     invalid_hp.each do |hp|
       @ssr.hp = hp
-      assert_not @ssr.valid?, "#{hp.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{hp.inspect} should not be valid"
     end
   end
   
@@ -149,11 +149,11 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_atk.each do |atk|
       @ssr.atk = atk
-      assert @ssr.valid?, "#{atk.inspect} shoud be valid"
+      assert @ssr.valid?, "#{atk.inspect} should be valid"
     end
     invalid_atk.each do |atk|
       @ssr.atk = atk
-      assert_not @ssr.valid?, "#{atk.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{atk.inspect} should not be valid"
     end
   end
   
@@ -169,11 +169,11 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_cost.each do |cost|
       @ssr.cost = cost
-      assert @ssr.valid?, "#{cost.inspect} shoud be valid"
+      assert @ssr.valid?, "#{cost.inspect} should be valid"
     end
     invalid_cost.each do |cost|
       @ssr.cost = cost
-      assert_not @ssr.valid?, "#{cost.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{cost.inspect} should not be valid"
     end
   end
   
@@ -189,11 +189,11 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_sp.each do |sp|
       @ssr.sp = sp
-      assert @ssr.valid?, "#{sp.inspect} shoud be valid"
+      assert @ssr.valid?, "#{sp.inspect} should be valid"
     end
     invalid_sp.each do |sp|
       @ssr.sp = sp
-      assert_not @ssr.valid?, "#{sp.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{sp.inspect} should not be valid"
     end
   end
   
@@ -209,11 +209,11 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_sp_ratio.each do |sp_ratio|
       @ssr.sp_ratio = sp_ratio
-      assert @ssr.valid?, "#{sp_ratio.inspect} shoud be valid"
+      assert @ssr.valid?, "#{sp_ratio.inspect} should be valid"
     end
     invalid_sp_ratio.each do |sp_ratio|
       @ssr.sp_ratio = sp_ratio
-      assert_not @ssr.valid?, "#{sp_ratio.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{sp_ratio.inspect} should not be valid"
     end
   end
 
@@ -229,11 +229,41 @@ class SsrTest < ActiveSupport::TestCase
     
     valid_sp_atk.each do |sp_atk|
       @ssr.sp_atk = sp_atk
-      assert @ssr.valid?, "#{sp_atk.inspect} shoud be valid"
+      assert @ssr.valid?, "#{sp_atk.inspect} should be valid"
     end
     invalid_sp_ratio.each do |sp_atk|
       @ssr.sp_atk = sp_atk
-      assert_not @ssr.valid?, "#{sp_atk.inspect} shoud not be valid"
+      assert_not @ssr.valid?, "#{sp_atk.inspect} should not be valid"
+    end
+  end
+  
+  # image url
+  test "image_url should not be too long" do
+    @ssr.image_url = "https://www.example.com/" + "a"*974 + "jpg"
+    assert_not @ssr.valid?
+  end
+  
+  test "image_url should be image file" do 
+    valid_files   = %w[jpeg jpg png gif svg bmp JPeG JPG Png Gif SVG BMp]
+    invalid_files = %w[doc xls html htm cgi php]
+    
+    valid_files.each do |f|
+      @ssr.image_url = "https://www.example.com/image_files/aaa-0001.#{f}"
+      assert @ssr.valid?, "#{f.inspect} should be valid"
+    end
+    
+    invalid_files.each do |f|
+      @ssr.image_url = "https://www.example.com/image_files/aaa-0001.#{f}"
+      assert_not @ssr.valid?, "#{f.inspect} should not be valid"
+    end
+  end
+  
+  test "image_url should be https protocol" do
+    invalid_protocol = %w[http ftp ttp ttps]
+    
+    invalid_protocol.each do |p|
+      @ssr.image_url = "#{p}://www.example.com/aaa.jpg"
+      assert_not @ssr.valid?, "#{p.inspect} should not be valid"
     end
   end
 end

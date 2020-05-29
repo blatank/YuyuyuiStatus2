@@ -48,7 +48,7 @@ class SsrsController < ApplicationController
   private
     # stromg parameters
     def ssr_params
-      params.require(:ssr).permit(:name, :hero_id, :rare, :color_id, :hp, :atk, :stamina, :speed, :crt, :cost, :sp, :sp_ratio, :sp_atk)
+      params.require(:ssr).permit(:name, :hero_id, :rare, :color_id, :hp, :atk, :stamina, :speed, :crt, :cost, :sp, :sp_ratio, :sp_atk, :image_url)
     end
   
     def get_data

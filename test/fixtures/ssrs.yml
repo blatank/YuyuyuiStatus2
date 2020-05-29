@@ -14,6 +14,7 @@ ssrtest1:
   sp_ratio: 150 # LSB[0.1]
   sp_atk: 327000
   hero: wassy
+  image_url: ""
 
 ssrtest2:
   name: "信頼"
@@ -29,3 +30,4 @@ ssrtest2:
   sp_ratio: 35 # LSB[0.1]
   sp_atk: 143150
   hero: gin
+  image_url: ""
