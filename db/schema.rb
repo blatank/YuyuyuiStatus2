@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_101811) do
+ActiveRecord::Schema.define(version: 2020_05_29_012721) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_101811) do
     t.integer "hero_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url", default: ""
     t.index ["hero_id"], name: "index_ssrs_on_hero_id"
     t.index ["name", "hero_id"], name: "index_ssrs_on_name_and_hero_id", unique: true
   end
