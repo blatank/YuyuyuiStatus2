@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_012721) do
+ActiveRecord::Schema.define(version: 2020_05_29_061822) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2020_05_29_012721) do
     t.string "image_url", default: ""
     t.index ["hero_id"], name: "index_ssrs_on_hero_id"
     t.index ["name", "hero_id"], name: "index_ssrs_on_name_and_hero_id", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "heros", "hero_types"
