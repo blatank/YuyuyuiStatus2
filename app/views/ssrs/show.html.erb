@@ -17,13 +17,16 @@
     <div class="ssr-status">
       <table class="table">
         <tr>
+          <td>勇者名</td><td><%= link_to @ssr.hero.name, hero_path(@ssr.hero) %></td>
+        </tr>
+        <tr>
           <td>レア</td><td><%= @ssr.rare %></td>
         </tr>
         <tr>
-          <td>属性</td><td><%= @ssr.color.mean %></td>
+          <td>属性</td><td><%= link_to @ssr.color.mean, color_path(@ssr.color) %></td>
         </tr>
         <tr>
-          <td>タイプ</td><td><%= @ssr.hero.hero_type.name %></td>
+          <td>タイプ</td><td><%= link_to @ssr.hero.hero_type.name, hero_type_path(@ssr.hero.hero_type) %></td>
         </tr>
         <tr>
           <td>HP</td><td><%= @ssr.hp %></td>
