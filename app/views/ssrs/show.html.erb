@@ -57,8 +57,11 @@
       </table>
     </div>
   </div>
-  <div class="ssr-edit-btn">
-    <%= link_to "編集する", edit_ssr_path(@ssr), class: "btn btn-lg btn-primary" %>
-  </div>
+  
+  <% if logged_in? %>
+    <div class="ssr-edit-btn">
+      <%= link_to "編集する", edit_ssr_path(@ssr), class: "btn btn-lg btn-primary" %>
+    </div>
+  <% end %>
 </div>
 

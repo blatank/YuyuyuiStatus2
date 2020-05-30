@@ -23,7 +23,15 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-      
+    
+    # login check
+    def login_check
+      unless logged_in?
+        flash[:danger] = "無効な操作です"
+        redirect_to root_url
+      end
+    end
+    
     def order_check
       param_list = ["color_id", "hero_id", "hero_type_id", "name", "hp", "atk", "stamina", "speed", "crt", "cost", "sp", "sp_ratio", "sp_atk"]
       order_list = ["asc", "desc"]

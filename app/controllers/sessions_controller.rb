@@ -14,4 +14,12 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+  
+  def destroy
+    # ログアウト処理する
+    log_out
+    
+    # rootにリダイレクト
+    redirect_to root_url
+  end
 end

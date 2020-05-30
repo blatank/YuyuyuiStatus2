@@ -1,8 +1,23 @@
 require 'test_helper'
 
 class SsrsAddTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = users(:michael)
+  end
+  
+  test "should not access without login" do
+    
+    # newページにアクセス
+    get new_ssr_path
+    
+    # rootにリダイレクトされることを確認 
+    assert_redirected_to root_url
+    follow_redirect!
+  end
+  
   test "invalid ssr information" do
     # ログインする
+    log_in_as(@user)
     
     # newページにアクセス
     get new_ssr_path
@@ -35,10 +50,13 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
   end
   
   test "valid ssr information" do
+    # ログインする
+    log_in_as(@user)
+    
     # newページにアクセス
     get new_ssr_path
     
-    # 間違った入力を送る
+    # 正しい入力を送る
     assert_difference 'Ssr.count', 1 do
       post ssrs_path, params: { ssr: { name: "test",
                                        hero_id: heros(:gin).id,
@@ -67,5 +85,31 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
     
     # 成功のメッセージのflashが存在するはず
     assert_not flash.nil?
+  end
+  
+  test "send valid create information without login" do
+    # ログインもしてない、edit経由でもなく直接有効値を送る
+    post ssrs_path, params:       { ssr: { name: "test",
+                                        hero_id: heros(:gin).id,
+                                           rare: "SSR",
+                                       color_id: colors(:red).id,
+                                             hp: 100,
+                                            atk: 100,
+                                        stamina: 0,
+                                          speed: 0,
+                                            crt: 1,
+                                           cost: 1,
+                                             sp: 1,
+                                       sp_ratio: 0,
+                                         sp_atk: 0
+                                        }
+                                  }    
+    
+    # rootにリダイレクトされることを確認 
+    assert_redirected_to root_url
+    follow_redirect!
+    
+    # flash
+    assert_not flash.empty?
   end
 end

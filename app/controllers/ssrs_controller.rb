@@ -1,5 +1,6 @@
 class SsrsController < ApplicationController
-  before_action :get_data, only: [:index, :order]
+  before_action :get_data,    only: [:index, :order]
+  before_action :login_check, only: [:new, :create, :edit, :update]
   def index
   end
   
