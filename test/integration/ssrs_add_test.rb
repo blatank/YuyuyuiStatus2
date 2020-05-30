@@ -2,6 +2,8 @@ require 'test_helper'
 
 class SsrsAddTest < ActionDispatch::IntegrationTest
   test "invalid ssr information" do
+    # ログインする
+    
     # newページにアクセス
     get new_ssr_path
     

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
+  
   def cal_maxmin
     order_list = {hp: :desc, atk: :desc, stamina: :desc, speed: :desc, crt: :desc,
                   cost: :desc, sp: :desc, sp_ratio: :desc, sp_atk: :desc }
