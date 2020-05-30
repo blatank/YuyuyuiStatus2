@@ -49,10 +49,10 @@
           <td>SP</td><td><%= @ssr.sp %></td>
         </tr>
         <tr>
-          <td>必殺技倍率</td><td><%= "%.15g"%(@ssr.sp_ratio / 10) %></td>
+          <td>必殺技倍率</td><td><%= "%.15g"%(@ssr.sp_ratio / 10.0) %></td>
         </tr>
         <tr>
-          <td>必殺技ATK</td><td><%= "%.15g"%(@ssr.sp_atk / 10) %></td>
+          <td>必殺技ATK</td><td><%= "%.15g"%(@ssr.sp_atk / 10.0) %></td>
         </tr>
       </table>
     </div>
