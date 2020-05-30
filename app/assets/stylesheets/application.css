@@ -156,6 +156,16 @@ header {
   background-color: white;
 }
 
+/* news */
+#news {
+  margin-top: 20px;
+}
+
+#news li {
+  color: gray;
+  font-size: 0.825rem;
+}
+
 /* ssr show */
 #ssr-show h1 {
   margin-top: 20px;
