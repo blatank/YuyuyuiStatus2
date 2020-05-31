@@ -1,11 +1,14 @@
 wassy:
   name: "鷲尾須美"
   hero_type: ensya
+  filename: "wassy.csv"
 
 gin:
   name: "三ノ輪銀"
   hero_type: kinsetsu
+  filename: "gin.csv"
   
 sonochu:
   name: "乃木園子(中学生)"
   hero_type: hani
+  filename: "sonochu.csv"
