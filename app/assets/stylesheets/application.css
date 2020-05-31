@@ -241,6 +241,11 @@ header {
 }
 /* べた書きここまで */
 
+/* csv link */
+.csvlink {
+  margin-top: 20px;
+}
+
 /* ヘッダ以降の位置 */
 #after_header {
   position: relative;

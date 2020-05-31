@@ -138,6 +138,12 @@ class Ssr < ApplicationRecord
           sp       = line[9].to_i
           hero_id  = hero.id
           
+          if line[10].empty?
+            image_url = ""
+          else
+            image_url = line[11]
+          end
+          
           
           # 必殺技倍率は10倍して入れる
           sp_ratio = (line[10].to_f * 10).to_i
@@ -155,11 +161,15 @@ class Ssr < ApplicationRecord
                               sp: sp,
                         sp_ratio: sp_ratio,
                           sp_atk: sp_atk,
-                         hero_id: hero_id)
+                         hero_id: hero_id,
+                       image_url: image_url)
           
           if ssr.valid?
             ssr.save
             num = num + 1 
+          else
+            # test
+            p ssr.errors
           end
         end
       end

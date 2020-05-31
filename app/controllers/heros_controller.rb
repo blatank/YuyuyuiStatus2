@@ -2,6 +2,14 @@ class HerosController < ApplicationController
   before_action :get_data
   
   def show
+    respond_to do |format|
+      format.html do
+      end
+    
+      format.csv do
+        send_data render_to_string, filename: "#{@hero.filename}.csv", type: :csv
+      end
+    end
   end
   
   def order

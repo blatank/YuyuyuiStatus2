@@ -35,22 +35,8 @@ class HeroTest < ActiveSupport::TestCase
   end
   
   test "filename should not be too long" do
-    @hero.filename = "a" * 252 + ".csv"
+    @hero.filename = "a" * 256
     assert_not @hero.valid?
   end
-  
-  test "filename should be csv" do
-    valid_files   = %w[aaa.csv aaa.CsV]
-    invalid_files = %w[aaa.txt aaa.html aaa.bin aaa.zip aaa.csv.html]
 
-    valid_files.each do |f|
-      @hero.filename = f
-      assert @hero.valid?, "#{f.inspect} should be valid"
-    end
-    
-    invalid_files.each do |f|
-      @hero.filename = f
-      assert_not @hero.valid?, "#{f.inspect} should not be valid"
-    end
-  end
 end
