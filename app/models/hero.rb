@@ -13,6 +13,11 @@ class Hero < ApplicationRecord
   # filename validation
   validates :filename, presence: true,
                          length: { maximum: 255 }
+                         
+  # icon url validation
+  ICON_URL_REGEX = /\A(|https:\/\/[a-zA-Z][a-zA-Z0-9\.\/\-_]+\.(jpg|jpeg|png|gif|svg|bmp))\z/i
+  validates :icon_url, length: { maximum: 1000 },
+                       format: {    with: ICON_URL_REGEX}
   
   # CSVからのインポート
   def self.csv_import(dir_path = 'db/csv/*.csv')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_012259) do
+ActiveRecord::Schema.define(version: 2020_06_04_125151) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2020_05_31_012259) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "filename", default: "hero.csv"
+    t.string "icon", default: ""
+    t.string "icon_url", default: ""
     t.index ["hero_type_id"], name: "index_heros_on_hero_type_id"
     t.index ["name"], name: "index_heros_on_name", unique: true
   end
