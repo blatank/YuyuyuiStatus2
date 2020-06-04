@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_125151) do
     t.integer "hero_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "filename", default: "hero.csv"
-    t.string "icon", default: ""
+    t.string "filename", default: "hero"
     t.string "icon_url", default: ""
     t.index ["hero_type_id"], name: "index_heros_on_hero_type_id"
     t.index ["name"], name: "index_heros_on_name", unique: true

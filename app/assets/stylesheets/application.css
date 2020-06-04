@@ -212,7 +212,8 @@ header {
   margin-top: 20px;
 }
 
-.ssr-form {
+.ssr-form,
+.hero-form {
   width: 70%;
   margin: 20px auto;
 }
@@ -244,6 +245,11 @@ header {
 /* csv link */
 .csvlink {
   margin-top: 20px;
+}
+
+.icon {
+  width: 50;
+  height: 50px;
 }
 
 /* ヘッダ以降の位置 */

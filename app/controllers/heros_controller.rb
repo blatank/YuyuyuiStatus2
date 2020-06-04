@@ -1,5 +1,6 @@
 class HerosController < ApplicationController
-  before_action :get_data
+  before_action :get_data, only: [:show, :order]
+  before_action :login_check, only: [:new, :create, :edit, :update]
   
   def show
     respond_to do |format|
@@ -12,12 +13,35 @@ class HerosController < ApplicationController
     end
   end
   
+  def new
+    @hero = Hero.new
+  end
+  
+  def create
+    @hero = Hero.new(hero_params)
+    
+    if @hero.save
+      flash[:success] = "#{@hero.name} を登録しました"
+      redirect_to @hero
+    else
+      render 'new'
+    end
+  end
+  
+  def edit
+    @hero = Hero.find(params[:id])
+  end
+  
   def order
     order_check
     render 'heros/show'
   end
   
   private
+    def hero_params
+      params.require(:hero).permit(:name, :hero_type_id, :filename, :icon_url)
+    end
+    
     def get_data
       @hero = Hero.find(params[:id])
       @ssrs = @hero.ssrs

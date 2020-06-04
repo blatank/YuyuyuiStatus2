@@ -1,0 +1,26 @@
+<div class="hero-form">
+  <%= form_with(model: @hero, local: true) do |f| %>
+  
+    <%= render 'form_error' %>
+  
+    <%= f.label :name, '勇者名' %>
+    <%= f.text_field :name, class: "form-control mb-2" %>
+    
+    
+    <%= f.label :hero_type_id, 'タイプ' %>
+    <select name="hero[hero_type_id]" id="hero_hero_type_id" class="form-control mb-2">
+      <% HeroType.all.each do |hero_type| %>
+        <option value="<%= hero_type.id %>"  <%= " selected" if @hero.hero_type && @hero.hero_type.id == hero_type.id %>><%= hero_type.name %></option>
+      <% end %>
+    </select>
+    
+    <%= f.label :filename, "CSV出力時ファイル名(拡張子は不要)" %>
+    <%= f.text_field :filename, class: "form-control mb-2" %>
+    
+    <%= f.label :icon_url, "画像ファイルURL(任意)" %>
+    <%= f.text_field :icon_url, class: "form-control mb-2" %>
+    
+    <%= f.submit yield(:button_text), class: "btn btn-primary form-control mt-3" %>
+  <% end %>
+</div>
+
