@@ -1,6 +1,10 @@
 <% provide(:title, "#{@hero.name}SSRステータス") %>
 <%= render 'shared/main' %>
 
+<div>
+  <%= link_to "勇者編集", edit_hero_path(@hero), class: 'btn btn-primary edit-btn' if logged_in? %>
+</div>
+
 <div class="csvlink">
   <%= link_to "csv出力", hero_path(@hero, format: :csv), class: 'btn btn-secondary' %>
 </div>

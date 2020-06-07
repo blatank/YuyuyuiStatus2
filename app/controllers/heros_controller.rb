@@ -32,6 +32,17 @@ class HerosController < ApplicationController
     @hero = Hero.find(params[:id])
   end
   
+  def update
+    @hero = Hero.find(params[:id])
+    
+    if @hero.update(hero_params)
+      flash[:success] = "データ更新完了"
+      redirect_to @hero
+    else
+      render 'edit'
+    end
+  end
+  
   def order
     order_check
     render 'heros/show'
