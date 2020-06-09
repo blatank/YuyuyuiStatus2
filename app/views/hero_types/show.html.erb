@@ -1,2 +1,8 @@
 <% provide(:title, "#{@hero_type.name}型のSSRステータス") %>
-<%= render 'shared/main' %>
+
+<main>
+  <h1><%= yield(:title) %></h1>
+  
+  <%= render 'shared/table' %>
+  <%= render 'shared/backlink' %>
+</main>
