@@ -30,9 +30,9 @@ h1 {
   margin: 0px;
 }
 
-main h1 {
-  margin-top: 20px;
-}
+/*main h1 {*/
+/*  margin-top: 20px;*/
+/*}*/
 
 h2 {
   margin: 0px;
@@ -257,12 +257,18 @@ header {
 
 .add-image-title {
   height: 50px;
+  margin-bottom: 20px;
 }
 
-#hero-edit h1 {
+.add-image-title h1 {
   line-height: 50px;
   display: inline-block;
 }
+
+/*#hero-edit h1 {*/
+/*  line-height: 50px;*/
+/*  display: inline-block;*/
+/*}*/
 
 .backlink a {
   width: 50%;
@@ -281,11 +287,20 @@ header {
   vertical-align: bottom;
 }
 
+.toplink {
+  display: inline-block;
+  line-height: 50px;
+  margin: 5px 0;
+}
+
+
 /* ヘッダ以降の位置 */
 #after_header {
   position: relative;
   top: 57px;
+  margin-top: 20px;
 }
+
 
 .longname {
   font-size: 13px;

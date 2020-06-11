@@ -1,7 +1,11 @@
 <% provide(:title, "#{@hero.name}SSRステータス") %>
 
 <main>
-  <h1><%= yield(:title) %></h1>
+  <div class="add-image-title">
+    <%= image_tag @hero.icon_url, class: 'icon' unless @hero.icon_url.empty? %>
+    <h1><%= yield(:title) %></h1>
+  </div>
+  <!--<h1><%= yield(:title) %></h1>-->
   <%= render 'shared/table' %>
   
   <div class="btnlink">

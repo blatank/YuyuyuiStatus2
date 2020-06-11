@@ -22,10 +22,16 @@
             <ol class="breadcrumb">
               <% @heros.each do |hero| %>
                 <% if hero.ssrs.count > 0 %>
-                  <li class="breadcrumb-item"><%= link_to hero.name, hero_path(hero) %></li>
+                  <li class="breadcrumb-item toplink">
+                    <% if hero.icon_url.blank? %>
+                      <%= link_to hero.name, hero_path(hero) %>
+                    <% else %>
+                      <a href="<%= hero_path(hero) %>"><%= image_tag hero.icon_url, alt: hero.name, title: hero.name, class: 'icon' %></a>
+                    <% end %>
+                  </li>
                 <% end %>
               <% end %>
-              <li class="breadcrumb-item"><%= link_to "全勇者", ssrs_path %></li>
+              <li class="breadcrumb-item toplink"><%= link_to "全勇者", ssrs_path %></li>
             </ol>
           </nav>
         </div>
