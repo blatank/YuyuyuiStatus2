@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :heros,      only: [:edit, :update, :show, :new, :create] do
+  resources :heros do
     member do
       get 'order/:param/:order', to: 'heros#order', as: "order"
     end

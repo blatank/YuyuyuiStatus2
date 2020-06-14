@@ -1,0 +1,70 @@
+<% provide(:title, "勇者一覧") %>
+
+<main>
+  <h1><%= yield(:title) %></h1>
+  
+  <table id="heros_table" class="table table-hover mt-3">
+    <thead>
+      <tr class="bg-light">
+        <th><!-- 何も入れない --></th>
+        <th>勇者名</th>
+        <th>タイプ</th>
+        <th>SSR数</th>
+        <th>HP</th>
+        <th>ATK</th>
+        <th>踏張</th>
+        <th>速度</th>
+        <th>CRT</th>
+        <th>コスト</th>	
+        <th>SP</th>
+        <th>必殺技<br>倍率</th>
+        <th>必殺技<br>ATK</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @heros.each do |hero| %>
+        <% ssrs = hero.ssrs.where("rare = ?", "SSR") %>
+        <% if ssrs.count > 0 %>
+          <tr>
+            <td class="add-image-title"><a href="<%= hero_path(hero) %>"><%= image_tag hero.icon_url, alt: hero.name, class: "icon" %></a></td>
+            <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
+            <td><%= hero.hero_type.name %></td>
+            <td><%= ssrs.count %></td>
+            <td><%= "%.15g"%(ssrs.average("hp").to_f.round(1)) %>
+            <td><%= "%.15g"%(ssrs.average("atk").to_f.round(1)) %>
+            <td><%= Ssr.status_str(ssrs.average("stamina").to_f.round) %>
+            <td><%= Ssr.status_str(ssrs.average("speed").to_f.round) %>
+            <td><%= Ssr.status_str(ssrs.average("crt").to_f.round) %>
+            <td><%= "%.15g"%(ssrs.average("cost").to_f.round(1)) %>
+            <td><%= "%.15g"%(ssrs.average("sp").to_f.round(1)) %>
+            <td><%= "%.15g"%((ssrs.average("sp_ratio").to_f / 10.0).round(1)) %>
+            <td><%= "%.15g"%((ssrs.average("sp_atk").to_f / 10.0).round(1)) %>
+          </tr>
+        <% end %>
+      <% end %>
+      
+      <% ssrs = Ssr.where("rare = ?", "SSR") %>
+      <% if ssrs.count > 0 %>
+        <tr class="average">
+          <td class="add-image-title"></td>
+          <td class="hero_name">全勇者</td>
+          <td></td>
+          <td><%= ssrs.count %></td>
+          <td><%= "%.15g"%(ssrs.average("hp").to_f.round(1)) %>
+          <td><%= "%.15g"%(ssrs.average("atk").to_f.round(1)) %>
+          <td><%= Ssr.status_str(ssrs.average("stamina").to_f.round) %>
+          <td><%= Ssr.status_str(ssrs.average("speed").to_f.round) %>
+          <td><%= Ssr.status_str(ssrs.average("crt").to_f.round) %>
+          <td><%= "%.15g"%(ssrs.average("cost").to_f.round(1)) %>
+          <td><%= "%.15g"%(ssrs.average("sp").to_f.round(1)) %>
+          <td><%= "%.15g"%((ssrs.average("sp_ratio").to_f / 10.0).round(1)) %>
+          <td><%= "%.15g"%((ssrs.average("sp_atk").to_f / 10.0).round(1)) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  
+  
+</main>

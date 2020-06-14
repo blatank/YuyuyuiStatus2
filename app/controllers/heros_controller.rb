@@ -2,6 +2,10 @@ class HerosController < ApplicationController
   before_action :get_data, only: [:show, :order]
   before_action :login_check, only: [:new, :create, :edit, :update]
   
+  def index
+    @heros = Hero.all
+  end
+  
   def show
     respond_to do |format|
       format.html do

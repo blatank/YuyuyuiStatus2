@@ -265,6 +265,24 @@ header {
   display: inline-block;
 }
 
+#heros_table td {
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+}
+
+.add-image-title td {
+  line-height: 50px;
+  text-align: left;
+  display: inline-block;
+}
+
+.add-image-title a {
+  line-height: 50px;
+  display: inline-block;
+}
+
 /*#hero-edit h1 {*/
 /*  line-height: 50px;*/
 /*  display: inline-block;*/
