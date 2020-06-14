@@ -27,7 +27,11 @@
         <% ssrs = hero.ssrs.where("rare = ?", "SSR") %>
         <% if ssrs.count > 0 %>
           <tr>
-            <td class="add-image-title"><a href="<%= hero_path(hero) %>"><%= image_tag hero.icon_url, alt: hero.name, class: "icon" %></a></td>
+            <td class="add-image-title">
+              <% unless hero.icon_url.blank? %>
+                <a href="<%= hero_path(hero) %>"><%= image_tag hero.icon_url, alt: hero.name, class: "icon" %></a>
+              <% end %>
+            </td>
             <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
             <td><%= hero.hero_type.name %></td>
             <td><%= ssrs.count %></td>
