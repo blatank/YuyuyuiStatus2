@@ -14,6 +14,9 @@ class SsrsController < ApplicationController
     @ssr = Ssr.new(ssr_params)
     
     if @ssr.save
+      # 平均値更新
+      @ssr.hero.average_update
+      
       flash[:success] = "#{@ssr.name} #{@ssr.hero.name}を登録しました"
       redirect_to @ssr
     else
@@ -34,6 +37,9 @@ class SsrsController < ApplicationController
     @ssr = Ssr.find(params[:id])
 
     if @ssr.update(ssr_params)
+      # 平均値更新
+      @ssr.hero.average_update
+      
       flash[:success] = "データ更新完了"
       redirect_to @ssr
     else

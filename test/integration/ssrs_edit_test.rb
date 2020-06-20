@@ -70,6 +70,19 @@ class SsrsEditTest < ActionDispatch::IntegrationTest
   end
   
   test "successsful edit" do
+    hero = heros(:gin)
+    
+    # 変更前の平均値
+    pre_atk_ave = hero.atk_ave
+    pre_hp_ave = hero.hp_ave
+    pre_stamina_ave = hero.stamina_ave
+    pre_speed_ave = hero.speed_ave
+    pre_crt_ave = hero.crt_ave
+    pre_cost_ave = hero.cost_ave
+    pre_sp_ave = hero.sp_ave
+    pre_sp_ratio_ave = hero.sp_ratio_ave
+    pre_sp_atk_ave = hero.sp_atk_ave
+    
     # ログインする
     log_in_as(@user)
     
@@ -98,6 +111,18 @@ class SsrsEditTest < ActionDispatch::IntegrationTest
     # エラーメッセージをチェック
     assert_select 'div#error_explanation', count: 0
     assert_select 'div.field_with_errors', count: 0
+    
+    # 平均値が更新されたことを確認
+    hero.reload
+    assert_not_equal pre_atk_ave, hero.atk_ave
+    assert_not_equal pre_hp_ave, hero.hp_ave
+    assert_not_equal pre_stamina_ave, hero.stamina_ave
+    assert_not_equal pre_speed_ave, hero.speed_ave
+    assert_not_equal pre_crt_ave, hero.crt_ave
+    assert_not_equal pre_cost_ave, hero.cost_ave
+    assert_not_equal pre_sp_ave, hero.sp_ave
+    assert_not_equal pre_sp_ratio_ave, hero.sp_ratio_ave
+    assert_not_equal pre_sp_atk_ave, hero.sp_atk_ave
   end
   
   test "send valid edit information without login" do

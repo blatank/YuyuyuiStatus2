@@ -50,6 +50,22 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
   end
   
   test "valid ssr information" do
+    hero = heros(:gin)
+    
+    # データ内に平均値ないのでここで算出
+    hero.average_update
+    
+    # 変更前の平均値
+    pre_atk_ave = hero.atk_ave
+    pre_hp_ave = hero.hp_ave
+    pre_stamina_ave = hero.stamina_ave
+    pre_speed_ave = hero.speed_ave
+    pre_crt_ave = hero.crt_ave
+    pre_cost_ave = hero.cost_ave
+    pre_sp_ave = hero.sp_ave
+    pre_sp_ratio_ave = hero.sp_ratio_ave
+    pre_sp_atk_ave = hero.sp_atk_ave
+    
     # ログインする
     log_in_as(@user)
     
@@ -85,9 +101,23 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
     
     # 成功のメッセージのflashが存在するはず
     assert_not flash.nil?
+
+    
+    # 平均値が更新されたことを確認
+    hero.reload
+    assert_not_equal pre_atk_ave, hero.atk_ave, "pre: #{pre_atk_ave}, current: #{hero.atk_ave}"
+    assert_not_equal pre_hp_ave, hero.hp_ave
+    assert_not_equal pre_stamina_ave, hero.stamina_ave
+    assert_not_equal pre_speed_ave, hero.speed_ave
+    assert_not_equal pre_crt_ave, hero.crt_ave
+    assert_not_equal pre_cost_ave, hero.cost_ave
+    assert_not_equal pre_sp_ave, hero.sp_ave
+    assert_not_equal pre_sp_ratio_ave, hero.sp_ratio_ave
+    assert_not_equal pre_sp_atk_ave, hero.sp_atk_ave
   end
   
   test "send valid create information without login" do
+    
     # ログインもしてない、edit経由でもなく直接有効値を送る
     post ssrs_path, params:       { ssr: { name: "test",
                                         hero_id: heros(:gin).id,
@@ -111,5 +141,6 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
     
     # flash
     assert_not flash.empty?
+
   end
 end
