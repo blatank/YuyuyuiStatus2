@@ -35,15 +35,15 @@
             <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
             <td><%= hero.hero_type.name %></td>
             <td><%= ssrs.count %></td>
-            <td><%= "%.15g"%(ssrs.average("hp").to_f.round(1)) %>
-            <td><%= "%.15g"%(ssrs.average("atk").to_f.round(1)) %>
-            <td><%= Ssr.status_str(ssrs.average("stamina").to_f.round) %>
-            <td><%= Ssr.status_str(ssrs.average("speed").to_f.round) %>
-            <td><%= Ssr.status_str(ssrs.average("crt").to_f.round) %>
-            <td><%= "%.15g"%(ssrs.average("cost").to_f.round(1)) %>
-            <td><%= "%.15g"%(ssrs.average("sp").to_f.round(1)) %>
-            <td><%= "%.15g"%((ssrs.average("sp_ratio").to_f / 10.0).round(1)) %>
-            <td><%= "%.15g"%((ssrs.average("sp_atk").to_f / 10.0).round(1)) %>
+            <td><%= "%.15g"%(hero.hp_ave.to_f.round(1) / 10.0) %>
+            <td><%= "%.15g"%(hero.atk_ave.to_f.round(1) / 10.0) %>
+            <td><%= Ssr.status_str(hero.stamina_ave) %>
+            <td><%= Ssr.status_str(hero.speed_ave) %>
+            <td><%= Ssr.status_str(hero.crt_ave) %>
+            <td><%= "%.15g"%(hero.cost_ave.to_f.round(1) / 10.0) %>
+            <td><%= "%.15g"%(hero.sp_ave.to_f.round(1) / 10.0) %>
+            <td><%= "%.15g"%((hero.sp_ratio_ave.to_f / 100.0).round(1)) %>
+            <td><%= "%.15g"%((hero.sp_atk_ave.to_f / 100.0).round(1)) %>
           </tr>
         <% end %>
       <% end %>

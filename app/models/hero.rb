@@ -20,7 +20,7 @@ class Hero < ApplicationRecord
                        format: {    with: ICON_URL_REGEX}
                          
   def average_update
-    ssrs = self.ssrs
+    ssrs = self.ssrs.where("rare = ?", "SSR")
     
     self.hp_ave  = (ssrs.average("hp").to_f.round(1) * 10).to_i
     self.atk_ave = (ssrs.average("atk").to_f.round(1) * 10).to_i
