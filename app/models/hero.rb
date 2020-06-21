@@ -31,6 +31,7 @@ class Hero < ApplicationRecord
     self.sp_ave = (ssrs.average("sp").to_f.round(1) * 10).to_i
     self.sp_ratio_ave = (ssrs.average("sp_ratio").to_f.round(1) * 10).to_i
     self.sp_atk_ave = (ssrs.average("sp_atk").to_f.round(1) * 10).to_i
+    self.ssr_count = ssrs.count
 
     self.save
   end

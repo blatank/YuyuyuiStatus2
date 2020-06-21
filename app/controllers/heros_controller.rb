@@ -3,7 +3,8 @@ class HerosController < ApplicationController
   before_action :login_check, only: [:new, :create, :edit, :update]
   
   def index
-    @heros = Hero.all
+    @heros = Hero.where("ssr_count > 0")
+    maxmin_ave
   end
   
   def show
@@ -53,6 +54,35 @@ class HerosController < ApplicationController
   end
   
   private
+    def maxmin_ave
+      @maxmin = {}
+      @maxmin[:count_max] = @heros.order(ssr_count: :desc).first.id
+      @maxmin[:count_min] = @heros.order(ssr_count: :desc).last.id
+      @maxmin[:hp_max] = @heros.order(hp_ave: :desc).first.id
+      @maxmin[:hp_min] = @heros.order(hp_ave: :desc).last.id
+      @maxmin[:atk_max] = @heros.order(atk_ave: :desc).first.id
+      @maxmin[:atk_min] = @heros.order(atk_ave: :desc).last.id
+      @maxmin[:stamina_max] = @heros.order(stamina_ave: :desc).first.id
+      @maxmin[:stamina_min] = @heros.order(stamina_ave: :desc).last.id
+      @maxmin[:speed_max] = @heros.order(speed_ave: :desc).first.id
+      @maxmin[:speed_min] = @heros.order(speed_ave: :desc).last.id      
+      @maxmin[:crt_max] = @heros.order(crt_ave: :desc).first.id
+      @maxmin[:crt_min] = @heros.order(crt_ave: :desc).last.id  
+      
+      # costは逆にする
+      @maxmin[:cost_max] = @heros.order(cost_ave: :desc).last.id
+      @maxmin[:cost_min] = @heros.order(cost_ave: :desc).first.id
+      
+      @maxmin[:sp_max] = @heros.order(sp_ave: :desc).first.id
+      @maxmin[:sp_min] = @heros.order(sp_ave: :desc).last.id
+      @maxmin[:sp_ratio_max] = @heros.order(sp_ratio_ave: :desc).first.id
+      @maxmin[:sp_ratio_min] = @heros.order(sp_ratio_ave: :desc).last.id
+      @maxmin[:sp_atk_max] = @heros.order(sp_atk_ave: :desc).first.id
+      @maxmin[:sp_atk_min] = @heros.order(sp_atk_ave: :desc).last.id
+    end
+  
+  
+  
     def hero_params
       params.require(:hero).permit(:name, :hero_type_id, :filename, :icon_url)
     end

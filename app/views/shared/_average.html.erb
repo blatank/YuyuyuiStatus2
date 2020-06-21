@@ -1,0 +1,14 @@
+<% if @ssrs.count > 0 %>
+  <tr class="average">
+    <td colspan="4">平均値(SSRのみ)</td>
+    <td><%= "%.15g"%(@average[:hp].round(1)) %></td>
+    <td><%= "%.15g"%(@average[:atk].round(1)) %></td>
+    <td><%= Ssr.status_str(@average[:stamina].round) %></td>
+    <td><%= Ssr.status_str(@average[:speed].round) %></td>
+    <td><%= Ssr.status_str(@average[:crt].round) %></td>
+    <td><%= "%.15g"%(@average[:cost].round(1)) %></td>
+    <td><%= "%.15g"%(@average[:sp].round(1)) %></td>
+    <td><%= "%.15g"%(@average[:sp_ratio] / 10.0).round(1) %></td>
+    <td><%= "%.15g"%(@average[:sp_atk] / 10.0).round(1) %></td>
+  </tr>
+<% end %>

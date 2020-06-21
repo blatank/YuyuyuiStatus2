@@ -1,0 +1,9 @@
+<td>
+  <% if max == hero_id %>
+    <strong class="strongest"><%= data %>
+  <% elsif min == hero_id %>
+    <strong class="weakest"><%= data %>
+  <% else %>
+    <%= data %>
+  <% end %>
+</td>

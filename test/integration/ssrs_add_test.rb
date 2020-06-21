@@ -114,6 +114,9 @@ class SsrsAddTest < ActionDispatch::IntegrationTest
     assert_not_equal pre_sp_ave, hero.sp_ave
     assert_not_equal pre_sp_ratio_ave, hero.sp_ratio_ave
     assert_not_equal pre_sp_atk_ave, hero.sp_atk_ave
+    
+    # SSR数をチェック
+    assert_equal hero.ssr_count, hero.ssrs.where("rare = ?", "SSR").count
   end
   
   test "send valid create information without login" do

@@ -34,16 +34,18 @@
             </td>
             <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
             <td><%= hero.hero_type.name %></td>
-            <td><%= ssrs.count %></td>
-            <td><%= "%.15g"%(hero.hp_ave.to_f.round(1) / 10.0) %>
-            <td><%= "%.15g"%(hero.atk_ave.to_f.round(1) / 10.0) %>
-            <td><%= Ssr.status_str(hero.stamina_ave) %>
-            <td><%= Ssr.status_str(hero.speed_ave) %>
-            <td><%= Ssr.status_str(hero.crt_ave) %>
-            <td><%= "%.15g"%(hero.cost_ave.to_f.round(1) / 10.0) %>
-            <td><%= "%.15g"%(hero.sp_ave.to_f.round(1) / 10.0) %>
-            <td><%= "%.15g"%((hero.sp_ratio_ave.to_f / 100.0).round(1)) %>
-            <td><%= "%.15g"%((hero.sp_atk_ave.to_f / 100.0).round(1)) %>
+            
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:count_max], min: @maxmin[:count_min], data: hero.ssr_count %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:hp_max], min: @maxmin[:hp_min], data: "%.15g"%(hero.hp_ave.to_f.round(1) / 10.0) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:atk_max], min: @maxmin[:atk_min], data: "%.15g"%(hero.atk_ave.to_f.round(1) / 10.0) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:stamina_max], min: @maxmin[:stamina_min], data: Ssr.status_str(hero.stamina_ave) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:speed_max], min: @maxmin[:speed_min], data: Ssr.status_str(hero.speed_ave) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:crt_max], min: @maxmin[:crt_min], data: Ssr.status_str(hero.crt_ave) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:cost_max], min: @maxmin[:cost_min], data: "%.15g"%(hero.cost_ave.to_f.round(1) / 10.0) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:sp_max], min: @maxmin[:sp_min], data: "%.15g"%(hero.sp_ave.to_f.round(1) / 10.0) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:sp_ratio_max], min: @maxmin[:sp_ratio_min], data: "%.15g"%((hero.sp_ratio_ave.to_f / 100.0).round(1)) %>
+            <%= render 'column', hero_id: hero.id, max: @maxmin[:sp_atk_max], min: @maxmin[:sp_atk_min], data: "%.15g"%((hero.sp_atk_ave.to_f / 100.0).round(1)) %>
+
           </tr>
         <% end %>
       <% end %>
