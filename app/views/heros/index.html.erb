@@ -35,16 +35,16 @@
             <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
             <td><%= hero.hero_type.name %></td>
             
-            <%= render 'column', hero: hero, label: 'ssr_count' %>
-            <%= render 'column', hero: hero, label: 'hp_ave',        data: "%.15g"%(hero.hp_ave.to_f.round(1) / 10.0) %>
-            <%= render 'column', hero: hero, label: 'atk_ave',       data: "%.15g"%(hero.atk_ave.to_f.round(1) / 10.0) %>
-            <%= render 'column', hero: hero, label: 'stamina_ave', data: Ssr.status_str(hero.stamina_ave) %>
-            <%= render 'column', hero: hero, label: 'speed_ave', data: Ssr.status_str(hero.speed_ave) %>
-            <%= render 'column', hero: hero, label: 'crt_ave', data: Ssr.status_str(hero.crt_ave) %>
-            <%= render 'column', hero: hero, label: 'cost_ave', data: "%.15g"%(hero.cost_ave.to_f.round(1) / 10.0) %>
-            <%= render 'column', hero: hero, label: 'sp_ave', data: "%.15g"%(hero.sp_ave.to_f.round(1) / 10.0) %>
-            <%= render 'column', hero: hero, label: 'sp_ratio_ave', data: "%.15g"%((hero.sp_ratio_ave.to_f / 100.0).round(1)) %>
-            <%= render 'column', hero: hero, label: 'sp_atk_ave', data: "%.15g"%((hero.sp_atk_ave.to_f / 100.0).round(1)) %>
+            <%= render 'column', data: hero, label: 'ssr_count' %>
+            <%= render 'column', data: hero, label: 'hp_ave' %>
+            <%= render 'column', data: hero, label: 'atk_ave' %>
+            <%= render 'column', data: hero, label: 'stamina_ave' %>
+            <%= render 'column', data: hero, label: 'speed_ave' %>
+            <%= render 'column', data: hero, label: 'crt_ave' %>
+            <%= render 'column', data: hero, label: 'cost_ave' %>
+            <%= render 'column', data: hero, label: 'sp_ave' %>
+            <%= render 'column', data: hero, label: 'sp_ratio_ave' %>
+            <%= render 'column', data: hero, label: 'sp_atk_ave' %>
 
           </tr>
         <% end %>

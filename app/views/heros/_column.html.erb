@@ -1,6 +1,6 @@
 <td>
   
-  <% raw_data = hero.send(label) %>
+  <% raw_data = data.send(label) %>
   
   <% if label == 'hp_ave' or label == 'atk_ave' or label == 'cost_ave' or label == 'sp_ave' %>
     <% str = "%.15g"%(raw_data.to_f.round(1) / 10.0) %>
