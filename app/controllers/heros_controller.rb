@@ -55,30 +55,31 @@ class HerosController < ApplicationController
   
   private
     def maxmin_ave
-      @maxmin = {}
-      @maxmin[:count_max] = @heros.order(ssr_count: :desc).first.id
-      @maxmin[:count_min] = @heros.order(ssr_count: :desc).last.id
-      @maxmin[:hp_max] = @heros.order(hp_ave: :desc).first.id
-      @maxmin[:hp_min] = @heros.order(hp_ave: :desc).last.id
-      @maxmin[:atk_max] = @heros.order(atk_ave: :desc).first.id
-      @maxmin[:atk_min] = @heros.order(atk_ave: :desc).last.id
-      @maxmin[:stamina_max] = @heros.order(stamina_ave: :desc).first.id
-      @maxmin[:stamina_min] = @heros.order(stamina_ave: :desc).last.id
-      @maxmin[:speed_max] = @heros.order(speed_ave: :desc).first.id
-      @maxmin[:speed_min] = @heros.order(speed_ave: :desc).last.id      
-      @maxmin[:crt_max] = @heros.order(crt_ave: :desc).first.id
-      @maxmin[:crt_min] = @heros.order(crt_ave: :desc).last.id  
+      @max = {}
+      @min = {}
+      @max['ssr_count'] = @heros.order(ssr_count: :desc).first.ssr_count
+      @min['ssr_count'] = @heros.order(ssr_count: :desc).last.ssr_count
+      @max['hp_ave'] = @heros.order(hp_ave: :desc).first.hp_ave
+      @min['hp_ave'] = @heros.order(hp_ave: :desc).last.hp_ave
+      @max['atk_ave'] = @heros.order(atk_ave: :desc).first.atk_ave
+      @min['atk_ave'] = @heros.order(atk_ave: :desc).last.atk_ave
+      @max['stamina_ave'] = @heros.order(stamina_ave: :desc).first.stamina_ave
+      @min['stamina_ave'] = @heros.order(stamina_ave: :desc).last.stamina_ave
+      @max['speed_ave'] = @heros.order(speed_ave: :desc).first.speed_ave
+      @min['speed_ave'] = @heros.order(speed_ave: :desc).last.speed_ave      
+      @max['crt_ave'] = @heros.order(crt_ave: :desc).first.crt_ave
+      @min['crt_ave'] = @heros.order(crt_ave: :desc).last.crt_ave  
       
       # costは逆にする
-      @maxmin[:cost_max] = @heros.order(cost_ave: :desc).last.id
-      @maxmin[:cost_min] = @heros.order(cost_ave: :desc).first.id
+      @max['cost_ave'] = @heros.order(cost_ave: :desc).last.cost_ave
+      @min['cost_ave'] = @heros.order(cost_ave: :desc).first.cost_ave
       
-      @maxmin[:sp_max] = @heros.order(sp_ave: :desc).first.id
-      @maxmin[:sp_min] = @heros.order(sp_ave: :desc).last.id
-      @maxmin[:sp_ratio_max] = @heros.order(sp_ratio_ave: :desc).first.id
-      @maxmin[:sp_ratio_min] = @heros.order(sp_ratio_ave: :desc).last.id
-      @maxmin[:sp_atk_max] = @heros.order(sp_atk_ave: :desc).first.id
-      @maxmin[:sp_atk_min] = @heros.order(sp_atk_ave: :desc).last.id
+      @max['sp_ave'] = @heros.order(sp_ave: :desc).first.sp_ave
+      @min['sp_ave'] = @heros.order(sp_ave: :desc).last.sp_ave
+      @max['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).first.sp_ratio_ave
+      @min['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).last.sp_ratio_ave
+      @max['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).first.sp_atk_ave
+      @min['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).last.sp_atk_ave
     end
   
   

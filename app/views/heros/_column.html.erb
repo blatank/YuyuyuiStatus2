@@ -1,9 +1,22 @@
 <td>
-  <% if max == hero_id %>
-    <strong class="strongest"><%= data %>
-  <% elsif min == hero_id %>
-    <strong class="weakest"><%= data %>
+  
+  <% raw_data = hero.send(label) %>
+  
+  <% if label == 'hp_ave' or label == 'atk_ave' or label == 'cost_ave' or label == 'sp_ave' %>
+    <% str = "%.15g"%(raw_data.to_f.round(1) / 10.0) %>
+  <% elsif label == 'sp_ratio_ave' or label == 'sp_atk_ave' %>
+    <% str = "%.15g"%((raw_data.to_f / 100.0).round(1)) %>
+  <% elsif label == 'ssr_count' %>
+    <% str = raw_data %>
   <% else %>
-    <%= data %>
+    <% str = Ssr.status_str(raw_data) %>
+  <% end %>
+  
+  <% if @max[label] == raw_data %>
+    <strong class="strongest"><%= str %>
+  <% elsif @min[label] == raw_data %>
+    <strong class="weakest"><%= str %>
+  <% else %>
+    <%= str %>
   <% end %>
 </td>
