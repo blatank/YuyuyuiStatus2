@@ -20,6 +20,10 @@ class ActiveSupport::TestCase
   def log_in_as(user)
     session[:user_id] = user.id
   end
+  
+  def log_out
+    session[:user_id] = nil
+  end
 end
 
 class ActionDispatch::IntegrationTest
@@ -35,5 +39,9 @@ class ActionDispatch::IntegrationTest
   def log_in_as(user, password: 'password')
     post login_path, params: { session: { email: user.email,
                                           password: password } }
+  end
+  
+  def log_out
+    delete  logout_path
   end
 end

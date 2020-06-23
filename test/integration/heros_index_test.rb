@@ -1,6 +1,19 @@
 require 'test_helper'
 
 class HerosIndexTest < ActionDispatch::IntegrationTest
+  
+  def setup
+    @user = users(:michael)
+    # ログインする
+    log_in_as(@user)
+    
+    # 平均値情報を更新しておく(fixturesにいれるのが面倒くさい)
+    get heros_allupdate_path
+    
+    # ログアウト
+    log_out
+  end
+  
   test "access index page" do
     get heros_path
     

@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     end
   end
   
+  get '/heros/allupdate', to: 'heros#allupdate'
   resources :heros do
     member do
       get 'order/:param/:order', to: 'heros#order', as: "order"
+      
     end
   end
   

@@ -1,6 +1,6 @@
 class HerosController < ApplicationController
   before_action :get_data, only: [:show, :order]
-  before_action :login_check, only: [:new, :create, :edit, :update]
+  before_action :login_check, only: [:new, :create, :edit, :update, :allupdate]
   
   def index
     @heros = Hero.where("ssr_count > 0")
@@ -53,33 +53,46 @@ class HerosController < ApplicationController
     render 'heros/show'
   end
   
+  def allupdate
+    heros = Hero.all
+    heros.each do |hero|
+      hero.average_update
+    end
+    
+    flash[:success] = "Updated Hero's information!"
+    redirect_to root_url
+    
+  end
+  
   private
     def maxmin_ave
-      @max = {}
-      @min = {}
-      @max['ssr_count'] = @heros.order(ssr_count: :desc).first.ssr_count
-      @min['ssr_count'] = @heros.order(ssr_count: :desc).last.ssr_count
-      @max['hp_ave'] = @heros.order(hp_ave: :desc).first.hp_ave
-      @min['hp_ave'] = @heros.order(hp_ave: :desc).last.hp_ave
-      @max['atk_ave'] = @heros.order(atk_ave: :desc).first.atk_ave
-      @min['atk_ave'] = @heros.order(atk_ave: :desc).last.atk_ave
-      @max['stamina_ave'] = @heros.order(stamina_ave: :desc).first.stamina_ave
-      @min['stamina_ave'] = @heros.order(stamina_ave: :desc).last.stamina_ave
-      @max['speed_ave'] = @heros.order(speed_ave: :desc).first.speed_ave
-      @min['speed_ave'] = @heros.order(speed_ave: :desc).last.speed_ave      
-      @max['crt_ave'] = @heros.order(crt_ave: :desc).first.crt_ave
-      @min['crt_ave'] = @heros.order(crt_ave: :desc).last.crt_ave  
-      
-      # costは逆にする
-      @max['cost_ave'] = @heros.order(cost_ave: :desc).last.cost_ave
-      @min['cost_ave'] = @heros.order(cost_ave: :desc).first.cost_ave
-      
-      @max['sp_ave'] = @heros.order(sp_ave: :desc).first.sp_ave
-      @min['sp_ave'] = @heros.order(sp_ave: :desc).last.sp_ave
-      @max['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).first.sp_ratio_ave
-      @min['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).last.sp_ratio_ave
-      @max['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).first.sp_atk_ave
-      @min['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).last.sp_atk_ave
+      if @heros.count > 0
+        @max = {}
+        @min = {}
+        @max['ssr_count'] = @heros.order(ssr_count: :desc).first.ssr_count
+        @min['ssr_count'] = @heros.order(ssr_count: :desc).last.ssr_count
+        @max['hp_ave'] = @heros.order(hp_ave: :desc).first.hp_ave
+        @min['hp_ave'] = @heros.order(hp_ave: :desc).last.hp_ave
+        @max['atk_ave'] = @heros.order(atk_ave: :desc).first.atk_ave
+        @min['atk_ave'] = @heros.order(atk_ave: :desc).last.atk_ave
+        @max['stamina_ave'] = @heros.order(stamina_ave: :desc).first.stamina_ave
+        @min['stamina_ave'] = @heros.order(stamina_ave: :desc).last.stamina_ave
+        @max['speed_ave'] = @heros.order(speed_ave: :desc).first.speed_ave
+        @min['speed_ave'] = @heros.order(speed_ave: :desc).last.speed_ave      
+        @max['crt_ave'] = @heros.order(crt_ave: :desc).first.crt_ave
+        @min['crt_ave'] = @heros.order(crt_ave: :desc).last.crt_ave  
+        
+        # costは逆にする
+        @max['cost_ave'] = @heros.order(cost_ave: :desc).last.cost_ave
+        @min['cost_ave'] = @heros.order(cost_ave: :desc).first.cost_ave
+        
+        @max['sp_ave'] = @heros.order(sp_ave: :desc).first.sp_ave
+        @min['sp_ave'] = @heros.order(sp_ave: :desc).last.sp_ave
+        @max['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).first.sp_ratio_ave
+        @min['sp_ratio_ave'] = @heros.order(sp_ratio_ave: :desc).last.sp_ratio_ave
+        @max['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).first.sp_atk_ave
+        @min['sp_atk_ave'] = @heros.order(sp_atk_ave: :desc).last.sp_atk_ave
+      end
     end
   
   
