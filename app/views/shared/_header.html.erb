@@ -14,6 +14,7 @@
           <% if logged_in? %>
             <li class="nav-item"><%= link_to "SSR追加", new_ssr_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to "勇者追加", new_hero_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "一括更新", heros_allupdate_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %></li>
           <% end %>
           <li class="nav-item"><%= link_to "Help", '#', class: "nav-link disabled" %></li>
