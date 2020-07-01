@@ -1,6 +1,7 @@
 class HerosController < ApplicationController
-  before_action :get_data, only: [:show, :order]
-  before_action :login_check, only: [:new, :create, :edit, :update, :allupdate]
+  before_action :index_before,  only: [:index]
+  before_action :get_data,      only: [:show, :order]
+  before_action :login_check,   only: [:new, :create, :edit, :update, :allupdate]
   
   def index
     @heros = Hero.where("ssr_count > 0")
@@ -65,6 +66,13 @@ class HerosController < ApplicationController
   end
   
   private
+    def index_before
+      # クエリ文字列にnameがあって、該当の勇者がいたらその勇者を表示する
+      if hero = Hero.find_by(name: params[:name])
+        redirect_to hero
+      end      
+    end
+    
     def maxmin_ave
       if @heros.count > 0
         @max = {}
