@@ -33,7 +33,7 @@
               <% end %>
             </td>
             <td class="hero_name"><%= link_to hero.name, hero_path(hero) %></td>
-            <td><%= hero.hero_type.name %></td>
+            <td><%= link_to hero.hero_type.name, hero_type_path(hero.hero_type) %></td>
             
             <%= render 'column', data: hero, label: 'ssr_count' %>
             <%= render 'column', data: hero, label: 'hp_ave' %>
