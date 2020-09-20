@@ -311,6 +311,10 @@ header {
   margin: 5px 0;
 }
 
+input.show_checkbox {
+  line-height: 27px;
+}
+
 
 /* ヘッダ以降の位置 */
 #after_header {
