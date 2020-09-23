@@ -58,10 +58,14 @@ table {
 /*}*/
 
 td, th {
-/*  border: 1px solid lightgray;*/
-  padding: 10px;
   white-space: nowrap;
 }
+
+.table td,
+.table th {
+  padding: 0.5rem;
+}
+  
 
 td.heroname {
   white-space: normal;
