@@ -47,6 +47,10 @@ h2 {
   font-size: 12px;
 }
 
+#explain ul li label {
+  display: inline;
+}
+
 table {
   /*border-collapse: collapse;*/
   /*後で直す margin-left: 50px; */
