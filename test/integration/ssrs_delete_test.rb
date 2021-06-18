@@ -26,6 +26,9 @@ class SsrsDeleteTest < ActionDispatch::IntegrationTest
     # ログインする
     log_in_as(@user)
     
+    hero = @ssr.hero
+    old_ssr_count = hero.ssrs.where("rare = ?", "SSR").count
+    
     # 削除実行
     delete ssr_path(@ssr)
 
@@ -36,6 +39,9 @@ class SsrsDeleteTest < ActionDispatch::IntegrationTest
     assert_not flash.nil?
     
     # 削除の数が1つ減っている
-    assert @ssr_count - 1, ssrs.count 
+    assert @ssr_count - 1, ssrs.count
+    
+    # 勇者の持っているSSRの数も減っている(削除するssrのレアはSSR)
+    assert old_ssr_count - 1, hero.ssrs.where("rare = ?", "SSR").count 
   end
 end

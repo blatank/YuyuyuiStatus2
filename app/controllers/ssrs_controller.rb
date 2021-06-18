@@ -52,6 +52,9 @@ class SsrsController < ApplicationController
     ssr = Ssr.find(params[:id])
     ssr.destroy
     
+    # 平均値更新
+    ssr.hero.average_update
+    
     # flashメッセージ設定
     flash[:success] = "#{ssr.name}を削除しました。"
     redirect_to ssr.hero
