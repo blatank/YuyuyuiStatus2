@@ -1,6 +1,6 @@
 class SsrsController < ApplicationController
   before_action :get_data,    only: [:index, :order]
-  before_action :login_check, only: [:new, :create, :edit, :update]
+  before_action :login_check, only: [:new, :create, :edit, :update, :destroy]
   def index
   end
   
@@ -45,6 +45,16 @@ class SsrsController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    # 名前だけ取得して削除
+    ssr = Ssr.find(params[:id])
+    ssr.destroy
+    
+    # flashメッセージ設定
+    flash[:success] = "#{ssr.name}を削除しました。"
+    redirect_to ssr.hero
   end
   
   def order

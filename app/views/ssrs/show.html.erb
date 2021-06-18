@@ -60,7 +60,8 @@
   
   <% if logged_in? %>
     <div class="ssr-edit-btn">
-      <%= link_to "編集する", edit_ssr_path(@ssr), class: "btn btn-lg btn-primary" %>
+      <%= link_to "編集する", edit_ssr_path(@ssr), class: "btn btn-lg btn-primary" %><br/>
+      <%= link_to "削除する", @ssr, method: :delete, class: "btn btn-secondary mt-4", data: { confirm: "このSSRを本当に削除しますか？" }  %>
     </div>
   <% end %>
 </div>
