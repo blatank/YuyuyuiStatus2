@@ -79,8 +79,8 @@ class HerosController < ApplicationController
         @min = {}
         @max['ssr_count'] = @heros.order(ssr_count: :desc).first.ssr_count
         @min['ssr_count'] = @heros.order(ssr_count: :desc).last.ssr_count
-        @max['ur_count'] = @heros.order(ssr_count: :desc).first.ur_count
-        @min['ur_count'] = @heros.order(ssr_count: :desc).last.ur_count
+        @max['ur_count'] = @heros.order(ur_count: :desc).first.ur_count
+        @min['ur_count'] = @heros.order(ur_count: :desc).last.ur_count
         @max['hp_ave'] = @heros.order(hp_ave: :desc).first.hp_ave
         @min['hp_ave'] = @heros.order(hp_ave: :desc).last.hp_ave
         @max['atk_ave'] = @heros.order(atk_ave: :desc).first.atk_ave
