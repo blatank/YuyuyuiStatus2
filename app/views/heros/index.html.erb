@@ -52,6 +52,7 @@
         <% end %>
       <% end %>
       
+      <% urs = Ssr.where("rare = ?", "UR") %>
       <% ssrs = Ssr.where("rare = ?", "SSR") %>
       <% if ssrs.count > 0 %>
         <tr class="average">
@@ -59,6 +60,7 @@
           <td class="hero_name">全勇者</td>
           <td></td>
           <td><%= ssrs.count %></td>
+          <td><%= urs.count %></td>
           <td><%= "%.15g"%(ssrs.average("hp").to_f.round(1)) %>
           <td><%= "%.15g"%(ssrs.average("atk").to_f.round(1)) %>
           <td><%= Ssr.status_str(ssrs.average("stamina").to_f.round) %>
