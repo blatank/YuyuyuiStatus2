@@ -6,7 +6,7 @@
     <% str = "%.15g"%(raw_data.to_f.round(1) / 10.0) %>
   <% elsif label == 'sp_ratio_ave' or label == 'sp_atk_ave' %>
     <% str = "%.15g"%((raw_data.to_f / 100.0).round(1)) %>
-  <% elsif label == 'ssr_count' %>
+  <% elsif label == 'ssr_count' or 'ur_count' %>
     <% str = raw_data %>
   <% else %>
     <% str = Ssr.status_str(raw_data) %>
