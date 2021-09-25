@@ -31,3 +31,19 @@ ssrtest2:
   sp_atk: 143150
   hero: gin
   image_url: ""
+
+ssrtest3:
+  name: "大きな希望"
+  color: yellow
+  rare: "UR"
+  hp: 3840
+  atk: 5380
+  stamina: 10
+  speed: 10
+  crt: 6
+  cost: 76
+  sp: 59
+  sp_ratio: 40 # LSB[0.1]
+  sp_atk: 215200
+  hero: yuna
+  image_url: ""

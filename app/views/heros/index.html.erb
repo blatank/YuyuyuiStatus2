@@ -10,6 +10,7 @@
         <th>勇者名</th>
         <th>タイプ</th>
         <th>SSR数</th>
+        <th>UR数</th>
         <th>HP</th>
         <th>ATK</th>
         <th>踏張</th>
@@ -36,6 +37,7 @@
             <td><%= link_to hero.hero_type.name, hero_type_path(hero.hero_type) %></td>
             
             <%= render 'column', data: hero, label: 'ssr_count' %>
+            <%= render 'column', data: hero, label: 'ur_count' %>
             <%= render 'column', data: hero, label: 'hp_ave' %>
             <%= render 'column', data: hero, label: 'atk_ave' %>
             <%= render 'column', data: hero, label: 'stamina_ave' %>

@@ -19,6 +19,7 @@ class HerosAllUpdateTest < ActionDispatch::IntegrationTest
     pre_sp_ratio_ave = @hero.sp_ratio_ave
     pre_sp_atk_ave = @hero.sp_atk_ave
     pre_ssr_count = @hero.ssr_count
+    pre_ur_count = @hero.ur_count
     
     # all updateにアクセス
     get heros_allupdate_path
@@ -42,6 +43,7 @@ class HerosAllUpdateTest < ActionDispatch::IntegrationTest
     assert_equal pre_sp_ratio_ave, @hero.sp_ratio_ave
     assert_equal pre_sp_atk_ave, @hero.sp_atk_ave
     assert_equal pre_ssr_count, @hero.ssr_count
+    assert_equal pre_ur_count, @hero.ur_count
   end
   
   test "should access with login" do
@@ -58,8 +60,10 @@ class HerosAllUpdateTest < ActionDispatch::IntegrationTest
     pre_sp_ave = @hero.sp_ave
     pre_sp_ratio_ave = @hero.sp_ratio_ave
     pre_sp_atk_ave = @hero.sp_atk_ave
+    pre_ssr_count = @hero.ssr_count
+    pre_ur_count = @hero.ur_count
     
-    # newページにアクセス
+    # all updateページにアクセス
     get heros_allupdate_path
     
     # rootにリダイレクトされる
@@ -79,7 +83,9 @@ class HerosAllUpdateTest < ActionDispatch::IntegrationTest
     assert_not_equal pre_sp_ave, @hero.sp_ave
     assert_not_equal pre_sp_ratio_ave, @hero.sp_ratio_ave
     assert_not_equal pre_sp_atk_ave, @hero.sp_atk_ave
-
+    assert_not_equal pre_ssr_count, @hero.ssr_count
+    assert_not_equal pre_ur_count, @hero.ur_count
+    
     # flash
     assert_not flash.empty?
   end

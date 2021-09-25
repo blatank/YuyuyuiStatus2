@@ -21,6 +21,7 @@ class Hero < ApplicationRecord
                          
   def average_update
     ssrs = self.ssrs.where("rare = ?", "SSR")
+    urs = self.ssrs.where("rare = ?", "UR")
     
     self.hp_ave  = (ssrs.average("hp").to_f.round(1) * 10).to_i
     self.atk_ave = (ssrs.average("atk").to_f.round(1) * 10).to_i
@@ -32,6 +33,7 @@ class Hero < ApplicationRecord
     self.sp_ratio_ave = (ssrs.average("sp_ratio").to_f.round(1) * 10).to_i
     self.sp_atk_ave = (ssrs.average("sp_atk").to_f.round(1) * 10).to_i
     self.ssr_count = ssrs.count
+    self.ur_count = urs.count
 
     self.save
   end

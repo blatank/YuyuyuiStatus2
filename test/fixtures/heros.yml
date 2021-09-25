@@ -12,3 +12,8 @@ sonochu:
   name: "乃木園子(中学生)"
   hero_type: hani
   filename: "sonochu"
+
+yuna:
+  name: "結城友奈"
+  hero_type: kinsetsu
+  filename: "yuna"

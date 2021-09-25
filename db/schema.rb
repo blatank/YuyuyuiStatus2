@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_143923) do
+ActiveRecord::Schema.define(version: 2021_09_25_045508) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_143923) do
     t.integer "sp_ratio_ave", default: 0
     t.integer "sp_atk_ave", default: 0
     t.integer "ssr_count", default: 0
+    t.integer "ur_count"
     t.index ["hero_type_id"], name: "index_heros_on_hero_type_id"
     t.index ["name"], name: "index_heros_on_name", unique: true
   end
