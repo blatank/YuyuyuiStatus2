@@ -14,8 +14,8 @@ class Ssr < ApplicationRecord
                  uniqueness: { scope: :hero_id,
                                message: "同じ名前のSSRは1つの勇者につき1つまでです" }
   # レア
-  RARE_TABLE = %w[R SR MR SSR UR]
-  VALID_RARE_REGEX = /\A(R|SR|MR|SSR|UR)\z/
+  RARE_TABLE = %w[R SR MR SSR BR UR]
+  VALID_RARE_REGEX = /\A(R|SR|MR|SSR|BR|UR)\z/
   validates :rare, presence: true,
                      format: { with: VALID_RARE_REGEX }
   

@@ -48,8 +48,8 @@ class SsrTest < ActiveSupport::TestCase
   end
   
   # レアタイプの制限
-  test "rare should be 4 rare type" do
-    valid_rare   = %w[R SR MR SSR UR]
+  test "rare should be 5 rare type" do
+    valid_rare   = %w[R SR MR SSR BR UR]
     invalid_rare = %w[rare SuperRare RR]
     
     valid_rare.each do |rare|
